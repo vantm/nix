@@ -35,5 +35,10 @@
     };
   };
 
+  xdg.userDirs = {
+    enable = true;
+  createDirectories = true;
+  };
+
   imports = [ ./sway.nix ./programs.nix ];
 }

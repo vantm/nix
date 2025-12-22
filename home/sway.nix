@@ -8,7 +8,7 @@
       output = {
         eDP-1 = {
           mode = "2880x1800@90Hz";
-          scale = "1.5";
+          scale = "1.25";
           background = "/home/vantm/Wallpapers/wallpaper.png fill";
         };
       };

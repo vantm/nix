@@ -4,11 +4,12 @@
   "height": 40,
   "margin-bottom":0,
   "margin-top":0,
-  "modules-left": [ "sway/mode", "sway/scratchpad", "sway/workspaces", "sway/window" ],
+  "modules-left": [ "sway/mode", "sway/workspaces", "sway/window" ],
   "modules-center": [ "clock", "idle_inhibitor", "privacy" ],
   "modules-right":  [
     "custom/recorder",
     "custom/audiorec",
+    "sway/scratchpad", 
     "cpu",
     "memory",
     "network",
@@ -19,22 +20,24 @@
     "tray"
   ],
   "sway/mode": { },
-  "sway/scratchpad": { },
+  "sway/scratchpad": {
+    "format-icons": [ "󰹕" ]
+  },
   "sway/workspaces": { },
   "sway/window": { "max-length": 60 },
   "tray": { "icon-size": 20, "spacing": 4 },
   "clock": { },
-  "cpu": { "interval": 5, "format": "  {}%" },
+  "cpu": { "interval": 5, "format": " {}%" },
   "memory": {
     "interval": 10,
-    "format": "  {used:0.1f}GB",
+    "format": " {used:0.1f}GB",
     "tooltip": false,
     "warning": 70,
     "critical": 90
   },
   "network": {
     "interval": 5,
-    "format-wifi": "  {essid}",
+    "format-wifi": " {essid}",
     "format-ethernet": " ",
     "format-linked": "{ipaddr}",
     "format-disconnected": " Disconnected",
@@ -42,7 +45,7 @@
     "max-length": 14
   },
   "wireplumber": {
-      "format": "{icon}  {volume}%",
+      "format": "{icon} {volume}%",
       "format-muted": "<span color='#EE4E4E'> </span>",
       "on-click": "wiremix",
       "format-icons": [""],
@@ -51,7 +54,7 @@
   "bluetooth": {
     "format": " {status}",
     "format-disabled": "",
-    "format-connected": " {device_alias}",
+    "format-connected": "{device_alias}",
     "tooltip-format": "{controller_alias}\t{controller_address}",
     "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
     "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}"
@@ -79,7 +82,7 @@
     "bat": "BAT1",
     "interval": 60,
     "states": { "warning": 30, "critical": 15 },
-    "format": "{icon} {capacity}%",
+    "format": "{icon}{capacity}%",
     "format-icons": [
       "\udb80\udc83",
       "\udb80\udc7a",

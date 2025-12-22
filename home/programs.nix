@@ -23,7 +23,6 @@
     wf-recorder
     ffmpeg
     xdg-utils
-    xdg-user-dirs
     slurp
     grim
     brave
@@ -104,6 +103,11 @@
     enable = true;
   };
 
+
+  programs.imv = {
+    enable = true;
+  };
+
   programs.satty = {
     enable = true;
   };
@@ -140,7 +144,7 @@
         normal = { family = "0xProto Nerd Font"; style = "Regular"; };
         bold = { family = "0xProto Nerd Font"; style = "Bold"; };
         italic = { family = "0xProto Nerd Font"; style = "Italic"; };
-        size = 10;
+        size = 12;
       };
 
       window = {
