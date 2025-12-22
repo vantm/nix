@@ -12,6 +12,10 @@
     "cpu",
     "memory",
     "network",
+    "bluetooth",
+    "backlight",
+    "wireplumber",
+    "battery",
     "tray"
   ],
   "sway/mode": { },
@@ -36,6 +40,59 @@
     "format-disconnected": " Disconnected",
     "format-disabled": "",
     "max-length": 14
+  },
+  "wireplumber": {
+      "format": "{icon}  {volume}%",
+      "format-muted": "<span color='#EE4E4E'> </span>",
+      "on-click": "wiremix",
+      "format-icons": [""],
+      "scroll-step": 0.2
+  },
+  "bluetooth": {
+    "format": " {status}",
+    "format-disabled": "",
+    "format-connected": " {device_alias}",
+    "tooltip-format": "{controller_alias}\t{controller_address}",
+    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}"
+  },
+  "backlight": {
+    "format": "{icon} {percent}%",
+    "format-icons": [
+      "\udb80\udf36",
+      "\udb86\ude4e",
+      "\udb86\ude4f",
+      "\udb86\ude50",
+      "\udb86\ude51",
+      "\udb86\ude52",
+      "\udb86\ude53",
+      "\udb86\ude54",
+      "\udb86\ude55",
+      "\udb86\ude56",
+      "\udb81\udee8"
+    ],
+    "on-scroll-down": "brightnessctl --class backlight set 1%+ > /dev/null",
+    "on-scroll-up": "brightnessctl --class backlight set 1%- > /dev/null",
+    "scroll-step": 0.1
+  },
+  "battery": {
+    "bat": "BAT1",
+    "interval": 60,
+    "states": { "warning": 30, "critical": 15 },
+    "format": "{icon} {capacity}%",
+    "format-icons": [
+      "\udb80\udc83",
+      "\udb80\udc7a",
+      "\udb80\udc7b",
+      "\udb80\udc7c",
+      "\udb80\udc7d",
+      "\udb80\udc7e",
+      "\udb80\udc7f",
+      "\udb80\udc80",
+      "\udb80\udc81",
+      "\udb80\udc82",
+      "\udb80\udc79"
+    ]
   },
   "idle_inhibitor": {
     "format": "{icon}",

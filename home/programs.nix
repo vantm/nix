@@ -1,14 +1,19 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
+    ## zsh plugins
+    zsh-vi-mode
+    pure-prompt
+
     ## tools
     netcat-openbsd
     tree
     unzip
 
-    ## zsh plugins
-    zsh-vi-mode
-    pure-prompt
+    ## tui
+    impala
+    bluetui
+    wiremix
 
     ## app
     adwaita-icon-theme
@@ -21,7 +26,6 @@
     xdg-user-dirs
     slurp
     grim
-    rofi-power-menu
     brave
     nautilus
   ];
