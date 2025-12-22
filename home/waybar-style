@@ -1,0 +1,54 @@
+button {
+    font-size: 16px;
+    border-radius: 0;
+    padding: 0 8px;
+    margin: 0;
+}
+
+#waybar {
+    font-family: "0xProto Nerd Font";
+    font-size: 14px; 
+    background-color: #000;
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+#waybar>box {
+    padding: 8px 0;
+}
+
+#mode {
+    font-weight: bold;
+    padding: 0 8px;
+    margin: 0;
+    background-color: #181818;
+    border-bottom: 1px solid #fff;
+    margin-right: 8px;
+}
+
+#workspaces {
+    margin-right: 8px;
+}
+
+#workspaces button {
+    color: #888;
+}
+
+#workspaces button.active {
+    color: #fff;
+    background-color: transparent;
+    font-weight: bold;
+    background-color: #181818;
+    border-bottom: 1px solid #fff;
+}
+
+.modules-center #idle_inhibitor {
+    padding-left: 8px;
+    padding-right: 12px;
+}
+
+#clock { font-weight: bold; }
+
+.modules-right .module {
+    margin-left: 8px;
+}
