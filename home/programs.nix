@@ -175,6 +175,10 @@
     enable = true;
   };
 
+  services.ollama = {
+    enable = true;
+  };
+
   gtk = {
     enable = true;
     colorScheme = "dark";

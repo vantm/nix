@@ -70,12 +70,12 @@
     enable = true;
     systemdTarget = "sway-session.target";
     timeouts = [
-      { timeout = 30; command = "${pkgs.swaylock-effects}/bin/swaylock"; }
       {
         timeout = 60;
         command = "${pkgs.sway}/bin/swaymsg 'output * dpms off'";
         resumeCommand = "${pkgs.sway}/bin/swaymsg 'output * dpms on'";
       }
+      { timeout = 180; command = "${pkgs.swaylock-effects}/bin/swaylock"; }
       { timeout = 1800; command = "${pkgs.systemd}/bin/systemctl suspend"; }
     ];
     events = [
