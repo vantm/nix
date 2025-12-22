@@ -171,6 +171,10 @@
     enable = true;
   };
 
+  programs.vscode = {
+    enable = true;
+  };
+
   services.flameshot = {
     enable = true;
   };
