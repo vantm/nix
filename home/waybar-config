@@ -26,7 +26,29 @@
   "sway/workspaces": { },
   "sway/window": { "max-length": 60 },
   "tray": { "icon-size": 20, "spacing": 4 },
-  "clock": { },
+  "clock": {
+    "format": "{:%a, %b %d, %Y - %R}",
+    "tooltip-format": "\n<span size='12pt' font='monospace' background='#000'>{calendar}</span>",
+    "calendar": {
+      "mode"          : "year",
+      "mode-mon-col"  : 3,
+      "weeks-pos"     : "left",
+      "on-scroll"     : 1,
+      "format": {
+        "months":     "<span color='#e05634'>{}</span>",
+        "days":       "<span>{}</span>",
+        "weeks":      "<span color='#62c1cc'>W{}</span>",
+        "weekdays":   "<span color='#62c1cc'>{}</span>",
+        "today":      "<span color='#e05634'><b><u>{}</u></b></span>"
+      }
+    },
+    "actions":  {
+      "on-click-right": "mode",
+      "on-click": "shift_reset",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down"
+    }
+  },
   "cpu": { "interval": 5, "format": " {}%" },
   "memory": {
     "interval": 10,

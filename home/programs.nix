@@ -21,12 +21,12 @@
     gnome-themes-extra
     wl-clipboard
     wf-recorder
+    libnotify
     ffmpeg
     xdg-utils
     slurp
     grim
     brave
-    nautilus
   ];
 
   programs.firefox.enable = true;
@@ -87,6 +87,11 @@
     enableZshIntegration = true;
   };
 
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
   programs.lazygit = {
     enable = true;
     enableZshIntegration = true;
@@ -105,10 +110,6 @@
 
 
   programs.imv = {
-    enable = true;
-  };
-
-  programs.satty = {
     enable = true;
   };
 
@@ -160,6 +161,18 @@
 
       cursor.vi_mode_style.shape = "Block";
     };
+  };
+
+  programs.lf = {
+    enable = true;
+  };
+
+  programs.satty = {
+    enable = true;
+  };
+
+  services.flameshot = {
+    enable = true;
   };
 
   gtk = {

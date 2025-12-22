@@ -19,7 +19,7 @@
 
   home.pointerCursor = {
     name = "Bibata-Original-Classic";
-    size = 20;
+    size = 28;
     package = pkgs.bibata-cursors;
   };
 
@@ -37,7 +37,7 @@
 
   xdg.userDirs = {
     enable = true;
-  createDirectories = true;
+    createDirectories = true;
   };
 
   imports = [ ./sway.nix ./programs.nix ];

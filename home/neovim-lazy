@@ -19,8 +19,8 @@ vim.keymap.set({ 'n', 'v' }, '<leader>Y', '"+Y')
 vim.keymap.set('v', '<', '<gv')
 vim.keymap.set('v', '>', '>gv')
 
-vim.keymap.set('n', 'S', '_diwP')
-vim.keymap.set('v', 'S', '_dp')
+vim.keymap.set('n', 'S', '"_diwP')
+vim.keymap.set('v', 'S', '"_dp')
 
 vim.keymap.set('n', 'n', 'nzz')
 vim.keymap.set('n', 'N', 'Nzz')
