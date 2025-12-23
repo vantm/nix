@@ -20,7 +20,7 @@
 
   home.pointerCursor = {
     name = "Bibata-Original-Classic";
-    size = 32;
+    size = 24;
     package = pkgs.bibata-cursors;
   };
 

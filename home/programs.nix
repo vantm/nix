@@ -15,23 +15,24 @@
     bluetui
     wiremix
 
+    ## qt
+    kdePackages.qt6ct
+
     ## app
     adwaita-icon-theme
     bibata-cursors
     gnome-themes-extra
     wl-clipboard
     wf-recorder
-    waypaper
-    swaybg
     libnotify
     ffmpeg
     xdg-utils
     slurp
     grim
+    kdePackages.dolphin
     brave
-
-    ## qt
-    kdePackages.qt6ct
+    dbeaver-bin
+    localsend
   ];
 
   programs.firefox.enable = true;
@@ -109,42 +110,26 @@
     };
   };
 
-  programs.mpv = {
-    enable = true;
-  };
-
-
-  programs.imv = {
-    enable = true;
-  };
-
   programs.btop = {
     enable = true;
     settings = {
       color_theme = "gruvbox_dark";
       vim_keys = true;
+      proc_tree = true;
     };
   };
 
-  programs.fastfetch = {
-    enable = true;
-  };
+  programs.mpv.enable = true;
 
-  programs.fd = {
-    enable = true;
-  };
+  programs.imv.enable = true;
 
-  programs.ripgrep = {
-    enable = true;
-  };
+  programs.fastfetch.enable = true;
 
-  programs.jq = {
-    enable = true;
-  };
+  programs.fd.enable = true;
 
-  programs.lf = {
-    enable = true;
-  };
+  programs.ripgrep.enable = true;
+
+  programs.jq.enable = true;
 
   programs.alacritty = {
     enable = true;
@@ -165,35 +150,36 @@
       keyboard.bindings = [
       	{ key = "Insert"; mods = "Shift"; action = "Paste"; }
       	{ key = "Insert"; mods = "Control"; action = "Copy"; }
-      	{ key = "O"; mods = "Shift"; mode = "Vi"; action = "Open"; }
+      	{ mode = "Vi"; key = "O"; mods = "Shift"; action = "Open"; }
+      	{ mode = "Vi"; key = "Q"; action = "ToggleViMode"; }
+      	{ mode = "Vi"; key = "U"; action = "ScrollHalfPageUp"; }
+      	{ mode = "Vi"; key = "D"; action = "ScrollHalfPageDown"; }
       ];
 
       cursor.vi_mode_style.shape = "Block";
     };
   };
 
-  programs.satty = {
-    enable = true;
-  };
+  programs.satty.enable = true;
 
-  programs.vscode = {
-    enable = true;
-  };
+  programs.vscode.enable = true;
 
-  programs.obs-studio = {
-    enable = true;
-  };
+  programs.obs-studio.enable = true;
 
-  programs.onlyoffice = {
-    enable = true;
-  };
+  programs.onlyoffice.enable = true;
 
-  services.flameshot = {
-    enable = true;
-  };
+  services.flameshot.enable = true;
 
-  services.ollama = {
+  services.ollama.enable = true;
+
+  services.wpaperd = {
     enable = true;
+    settings.default = {
+      path = "/home/vantm/Wallpapers";
+      duration = "1d";
+      sorting = "random";
+      mode = "center";
+    };
   };
 
   imports = [ ./neovim.nix ];

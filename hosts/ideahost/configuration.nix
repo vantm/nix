@@ -13,18 +13,45 @@
     powerOnBoot = true;
   };
 
-  boot.loader.limine.enable = true;
+  boot.loader.limine = {
+    enable = true;
+    extraConfig = ''
+      term_palette: 1e1e2e;f38ba8;a6e3a1;f9e2af;89b4fa;f5c2e7;94e2d5;cdd6f4
+      term_palette_bright: 585b70;f38ba8;a6e3a1;f9e2af;89b4fa;f5c2e7;94e2d5;cdd6f4
+      term_background: 1e1e2e
+      term_foreground: cdd6f4
+      term_background_bright: 585b70
+      term_foreground_bright: cdd6f4
+    '';
+    style.wallpapers = [];
+  };
   boot.loader.efi.canTouchEfiVariables = true;
   boot.plymouth.enable = true;
-  boot.consoleLogLevel = 3;
+
   boot.kernelParams = [ "quite" ];
 
   networking.hostName = "ideahost";
+
+  networking.dhcpcd.wait = "background";
+  networking.dhcpcd.extraConfig = "noarp";
+
+  networking.networkmanager.enable = true;
+  networking.networkmanager.wifi.backend = "iwd";
   networking.wireless.iwd.enable = true;
+
   networking.nameservers = [
-    "94.140.14.14:5353#adguard-dns.io"
-    "94.140.15.15:5353#adguard-dns.io"
+    "94.140.14.14"
+    "94.140.15.15"
   ];
+
+  services.resolved = {
+    enable = true;
+    domains = [ "~." ];
+    fallbackDns = [
+      "94.140.14.14"
+      "94.140.15.15"
+    ];
+  };
 
   time.timeZone = "Asia/Ho_Chi_Minh";
 
@@ -32,8 +59,11 @@
 
   users.users.vantm = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ];
     shell = pkgs.zsh;
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+    ];
   };
 
   environment.systemPackages = with pkgs; [
@@ -47,13 +77,13 @@
     settings.xinitrc = null;
   };
 
-  services.resolved = {
+  ## AUDIO
+
+  services.pipewire = {
     enable = true;
-    domains = [ "~." ];
-    fallbackDns = [
-      "1.1.1.1#one.one.one.one"
-      "1.0.0.1#one.one.one.one"
-    ];
+    audio.enable = true;
+    alsa.enable = true;
+    wireplumber.enable = true;
   };
 
   programs.zsh.enable = true;
