@@ -21,6 +21,8 @@
     gnome-themes-extra
     wl-clipboard
     wf-recorder
+    waypaper
+    swaybg
     libnotify
     ffmpeg
     xdg-utils
@@ -168,10 +170,6 @@
 
       cursor.vi_mode_style.shape = "Block";
     };
-  };
-  
-  programs.wlogout = {
-    enable = true;
   };
 
   programs.satty = {

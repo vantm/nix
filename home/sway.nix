@@ -8,8 +8,7 @@
       output = {
         eDP-1 = {
           mode = "2880x1800@90Hz";
-          scale = "1.25";
-          background = "/home/vantm/Wallpapers/wallpaper.png fill";
+          scale = "1.3333334";
         };
       };
       input = {
@@ -51,8 +50,9 @@
       bindsym Mod4+Shift+i \
         resize grow width 10 px, resize grow heigth 10 px
 
-      bindsym Mod4+Control+Mod1+p exec systemctl poweroff
-      bindsym Mod4+Control+Mod1+l exec ${pkgs.swaylock-effects}/bin/swaylock
+      bindsym Mod1+Mod4+Control+p exec systemctl poweroff
+      bindsym Mod1+Mod4+Control+r exec systemctl reboot
+      bindsym Mod1+Mod4+Control+l exec ${pkgs.swaylock-effects}/bin/swaylock
 
       bindgesture swipe:left workspace next
       bindgesture swipe:right workspace prev
