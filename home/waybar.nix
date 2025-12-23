@@ -6,10 +6,10 @@
       {
         layer = "top";
         position = "top";
-        height = 40;
+        height = 30;
         "margin-bottom" = 0;
         "margin-top" = 0;
-        "modules-left" = [ "sway/mode" "sway/workspaces" "sway/window" ];
+        "modules-left" = [ "sway/mode" "sway/workspaces" ];
         "modules-center" = [ "clock" "idle_inhibitor" "privacy" ];
         "modules-right" = [
           "sway/scratchpad" 
@@ -25,7 +25,6 @@
         "sway/mode" = { };
         "sway/scratchpad" = { "format-icons" = [ "󰹕" ]; };
         "sway/workspaces" = { };
-        "sway/window" = { "max-length" = 60; };
         tray = { "icon-size" = 20; spacing = 4; };
         clock = {
           format = "{:%a, %b %d, %Y - %R}";

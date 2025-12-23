@@ -1,45 +1,36 @@
 button {
-  font-size: 16px;
-  border-radius: 0;
-  padding: 0 8px;
-  margin: 0;
+  padding: 2px 8px;
+  border-radius: 4px;
 }
 
 #waybar {
   font-family: "0xProto Nerd Font";
   font-size: 14px; 
-  background-color: #000;
-  margin-left: 8px;
-  margin-right: 8px;
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
-#waybar>box {
-  padding: 8px 0;
-}
+#waybar>box { padding: 8px; }
 
 #mode {
   font-weight: bold;
-  padding: 0 8px;
-  margin: 0;
-  background-color: #181818;
-  border-bottom: 1px solid #fff;
-  margin-right: 8px;
+  background-color: #285577;
+  margin-right: 12px;
 }
 
 #workspaces {
-  margin-right: 8px;
+  margin-right: 4px;
 }
 
 #workspaces button {
   color: #888;
+  margin-right: 4px;
+  margin-right: 4px;
 }
 
 #workspaces button.focused {
   color: #fff;
-  background-color: transparent;
   font-weight: bold;
-  background-color: #181818;
-  border-bottom: 1px solid #fff;
+  background-color: #285577;
 }
 
 .modules-center #idle_inhibitor {
@@ -50,5 +41,5 @@ button {
 #clock { font-weight: bold; }
 
 .modules-right .module {
-  margin-left: 8px;
+  margin-left: 12px;
 }

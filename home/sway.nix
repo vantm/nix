@@ -35,18 +35,18 @@
     };
     extraConfig = ''
       unbindsym Mod4+d
-      set $drun tofi-run --fuzzy-match true | xargs swaymsg exec --
+      set $drun ${pkgs.tofi}/bin/tofi-run --fuzzy-match true | xargs swaymsg exec --
       bindsym Mod4+d exec $drun
 
       bindsym Mod4+c move absolute position center
 
-      bindsym Mod4+u resize shrink width 20 px
-      bindsym Mod4+i resize grow width 20 px
-      bindsym Mod4+o resize shrink height 20 px
-      bindsym Mod4+p resize grow height 20 px
+      bindsym Mod4+u resize shrink width 5 ppt
+      bindsym Mod4+i resize grow width 5 ppt
+      bindsym Mod4+o resize shrink height 5 ppt
+      bindsym Mod4+p resize grow height 5 ppt
 
-      bindsym Mod4+Shift+u resize shrink height 10 px; resize shrink width 10 px
-      bindsym Mod4+Shift+i resize grow height 10 px; resize grow width 10 px
+      bindsym Mod4+Shift+u resize shrink height 5 ppt; resize shrink width 5 ppt
+      bindsym Mod4+Shift+i resize grow height 5 ppt; resize grow width 5 ppt
 
       bindsym Mod1+Mod4+Control+p exec systemctl poweroff
       bindsym Mod1+Mod4+Control+r exec systemctl reboot
@@ -57,7 +57,7 @@
 
       bindsym --locked XF86AudioRaiseVolume exec swayosd-client --output-volume raise \
           --device="$(${pkgs.pulseaudio}/bin/pactl -f json list short sinks | jq -r 'sort_by(.state) | first | .name')"
-      bindsym --locked XF86AudioLowerVolume exec  swayosd-client --output-volume lower \
+      bindsym --locked XF86AudioLowerVolume exec swayosd-client --output-volume lower \
           --device="$(${pkgs.pulseaudio}/bin/pactl -f json list short sinks | jq -r 'sort_by(.state) | first | .name')"
       bindsym --locked XF86AudioMute exec swayosd-client --output-volume mute-toggle \
           --device="$(${pkgs.pulseaudio}/bin/pactl -f json list short sinks | jq -r 'sort_by(.state) | first | .name')"
@@ -68,6 +68,12 @@
       bindsym --locked XF86MonBrightnessDown exec swayosd-client --brightness lower
 
       bindsym --release Caps_Lock exec swayosd-client --caps-lock
+
+      bindsym Print exec ${pkgs.flameshot}/bin/flameshot gui
+
+      bindsym Mod1+Print exec ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" -t ppm - | \
+        ${pkgs.imagemagick}/bin/magick - -format '%[pixel:p{0,0}]' txt:- | \
+        tail -n 1 | cut -d ' ' -f 4 | ${pkgs.wl-clipboard}/bin/wl-copy
 
       for_window [app_id="^float-tui"] floating enable; move absolute position center
       for_window [app_id="float-tui.process"] resize set 70 ppt 80 ppt
@@ -106,7 +112,7 @@
     enable = true;
     systemdTarget = "sway-session.target";
     sunset = "18:00-20:00";
-    sunrise = "5:30-7:00";
+    sunrise = "6:30-7:30";
   };
 
   programs.swaylock = {

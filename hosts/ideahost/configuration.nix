@@ -25,33 +25,11 @@
     '';
     style.wallpapers = [];
   };
+  boot.loader.timeout = 3;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.plymouth.enable = true;
 
   boot.kernelParams = [ "quite" ];
-
-  networking.hostName = "ideahost";
-
-  networking.dhcpcd.wait = "background";
-  networking.dhcpcd.extraConfig = "noarp";
-
-  networking.networkmanager.enable = true;
-  networking.networkmanager.wifi.backend = "iwd";
-  networking.wireless.iwd.enable = true;
-
-  networking.nameservers = [
-    "94.140.14.14"
-    "94.140.15.15"
-  ];
-
-  services.resolved = {
-    enable = true;
-    domains = [ "~." ];
-    fallbackDns = [
-      "94.140.14.14"
-      "94.140.15.15"
-    ];
-  };
 
   time.timeZone = "Asia/Ho_Chi_Minh";
 
@@ -77,7 +55,34 @@
     settings.xinitrc = null;
   };
 
-  ## AUDIO
+  # Networking
+
+  networking.hostName = "ideahost";
+
+  networking.dhcpcd.wait = "background";
+  networking.dhcpcd.extraConfig = "noarp";
+
+  networking.networkmanager.enable = true;
+  networking.networkmanager.wifi.backend = "iwd";
+  networking.wireless.iwd.enable = true;
+
+  networking.nameservers = [
+    "94.140.14.14"
+    "94.140.15.15"
+  ];
+
+  services.resolved = {
+    enable = true;
+    domains = [ "~." ];
+    fallbackDns = [
+      "94.140.14.14"
+      "94.140.15.15"
+    ];
+  };
+
+  systemd.network.wait-online.enable = true;
+
+  # Audio
 
   services.pipewire = {
     enable = true;

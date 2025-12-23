@@ -9,6 +9,7 @@
     netcat-openbsd
     tree
     unzip
+    imagemagick
 
     ## tui
     impala
