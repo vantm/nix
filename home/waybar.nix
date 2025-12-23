@@ -53,7 +53,7 @@
         cpu = {
           interval = 5;
           format = " {}%";
-          "on-click" = "${pkgs.alacritty}/bin/alacritty --class 'float-tui' --command ${pkgs.btop}/bin/btop";
+          "on-click" = "${pkgs.alacritty}/bin/alacritty --class 'float-tui.process' --command ${pkgs.btop}/bin/btop";
         };
         memory = {
           interval = 10;
@@ -70,13 +70,14 @@
           "format-disconnected" = " Disconnected";
           "format-disabled" = "";
           "max-length" = 14;
-          "on-click" = "${pkgs.alacritty}/bin/alacritty --class 'float-tui' --command ${pkgs.impala}/bin/impala";
+          "on-click" = "${pkgs.alacritty}/bin/alacritty --class 'float-tui.connection' --command ${pkgs.impala}/bin/impala";
         };
         wireplumber = {
           format = "{icon} {volume}%";
-          "format-muted" = "<span color='#EE4E4E'> </span>";
-          "on-click" = "${pkgs.alacritty}/bin/alacritty --class 'float-tui' --command ${pkgs.wiremix}/bin/wiremix";
           "format-icons" = [ "" ];
+          "format-muted" = "<span color='#EE4E4E'> </span>";
+          "on-click" = "${pkgs.alacritty}/bin/alacritty --class 'float-tui.audio' --command ${pkgs.wiremix}/bin/wiremix";
+          "on-click-right" = "${pkgs.alacritty}/bin/alacritty --class 'float-tui.audio' --command ${pkgs.wiremix}/bin/wiremix -v output";
           "on-scroll-up" = "${pkgs.swayosd}/bin/swayosd-client --output-volume +1 > /dev/null";
           "on-scroll-down" = "${pkgs.swayosd}/bin/swayosd-client --output-volume -1  > /dev/null";
           "scroll-step" = 1;
@@ -88,7 +89,7 @@
           "tooltip-format" = "{controller_alias}\t{controller_address}";
           "tooltip-format-connected" = "{controller_alias}\t{controller_address}\n\n{device_enumerate}";
           "tooltip-format-enumerate-connected" = "{device_alias}\t{device_address}";
-          "on-click" = "${pkgs.alacritty}/bin/alacritty --class 'float-tui' --command ${pkgs.bluetui}/bin/bluetui";
+          "on-click" = "${pkgs.alacritty}/bin/alacritty --class 'float-tui.connection' --command ${pkgs.bluetui}/bin/bluetui";
         };
         backlight = {
           format = "{icon} {percent}%";

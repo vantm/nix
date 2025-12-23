@@ -35,20 +35,18 @@
     };
     extraConfig = ''
       unbindsym Mod4+d
-      set $drun tofi-drun | xargs swaymsg exec --
+      set $drun tofi-run --fuzzy-match true | xargs swaymsg exec --
       bindsym Mod4+d exec $drun
 
       bindsym Mod4+c move absolute position center
 
-      bindsym Mod4+u resize shrink width 10 px
-      bindsym Mod4+i resize grow width 10 px
-      bindsym Mod4+o resize shrink height 10 px
-      bindsym Mod4+p resize grow height 10 px
+      bindsym Mod4+u resize shrink width 20 px
+      bindsym Mod4+i resize grow width 20 px
+      bindsym Mod4+o resize shrink height 20 px
+      bindsym Mod4+p resize grow height 20 px
 
-      bindsym Mod4+Shift+u \
-        resize shrink height 10 px, resize shrink width 10 px
-      bindsym Mod4+Shift+i \
-        resize grow width 10 px, resize grow heigth 10 px
+      bindsym Mod4+Shift+u resize shrink height 10 px; resize shrink width 10 px
+      bindsym Mod4+Shift+i resize grow height 10 px; resize grow width 10 px
 
       bindsym Mod1+Mod4+Control+p exec systemctl poweroff
       bindsym Mod1+Mod4+Control+r exec systemctl reboot
@@ -57,9 +55,12 @@
       bindgesture swipe:left workspace next
       bindgesture swipe:right workspace prev
 
-      bindsym --locked XF86AudioRaiseVolume exec swayosd-client --output-volume raise
-      bindsym --locked XF86AudioLowerVolume exec  swayosd-client --output-volume lower
-      bindsym --locked XF86AudioMute exec swayosd-client --output-volume mute-toggle
+      bindsym --locked XF86AudioRaiseVolume exec swayosd-client --output-volume raise \
+          --device="$(${pkgs.pulseaudio}/bin/pactl -f json list short sinks | jq -r 'sort_by(.state) | first | .name')"
+      bindsym --locked XF86AudioLowerVolume exec  swayosd-client --output-volume lower \
+          --device="$(${pkgs.pulseaudio}/bin/pactl -f json list short sinks | jq -r 'sort_by(.state) | first | .name')"
+      bindsym --locked XF86AudioMute exec swayosd-client --output-volume mute-toggle \
+          --device="$(${pkgs.pulseaudio}/bin/pactl -f json list short sinks | jq -r 'sort_by(.state) | first | .name')"
 
       bindsym --locked XF86AudioMicMute exec swayosd-client --input-volume mute-toggle
 
@@ -68,10 +69,10 @@
 
       bindsym --release Caps_Lock exec swayosd-client --caps-lock
 
-      for_window [app_id="float-tui"] \
-        floating enable; \
-        move absolute position center; \
-        resize set 70 ppt 80 ppt
+      for_window [app_id="^float-tui"] floating enable; move absolute position center
+      for_window [app_id="float-tui.process"] resize set 70 ppt 80 ppt
+      for_window [app_id="float-tui.audio"] resize set 600 px 400 px
+      for_window [app_id="float-tui.connection"] resize set 600 px 800 px
     '';
   };
 
