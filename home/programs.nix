@@ -27,6 +27,9 @@
     slurp
     grim
     brave
+
+    ## qt
+    kdePackages.qt6ct
   ];
 
   programs.firefox.enable = true;
@@ -137,6 +140,10 @@
     enable = true;
   };
 
+  programs.lf = {
+    enable = true;
+  };
+
   programs.alacritty = {
     enable = true;
     theme = "gruvbox_material_hard_dark";
@@ -149,8 +156,8 @@
       };
 
       window = {
-        padding = { x = 0; y = 0; };
-        decorations = "None";
+        padding = { x = 4; y = 4; };
+        # decorations = "None";
       };
 
       keyboard.bindings = [
@@ -162,8 +169,8 @@
       cursor.vi_mode_style.shape = "Block";
     };
   };
-
-  programs.lf = {
+  
+  programs.wlogout = {
     enable = true;
   };
 
@@ -175,25 +182,20 @@
     enable = true;
   };
 
+  programs.obs-studio = {
+    enable = true;
+  };
+
+  programs.onlyoffice = {
+    enable = true;
+  };
+
   services.flameshot = {
     enable = true;
   };
 
   services.ollama = {
     enable = true;
-  };
-
-  gtk = {
-    enable = true;
-    colorScheme = "dark";
-    theme = {
-      name = "Adwaita-dark";
-      package = pkgs.gnome-themes-extra;
-    };
-    iconTheme = {
-      name = "Adwaita-dark";
-      package = pkgs.adwaita-icon-theme;
-    };
   };
 
   imports = [ ./neovim.nix ];

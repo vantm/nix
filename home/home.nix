@@ -15,6 +15,7 @@
     XMODIFIERS = "@im=fcitx";
     GTK_IM_MODULE = "fcitx";
     QT_IM_MODULE = "fcitx";
+    QT_QPA_PLATFORMTHEME = "qt6ct";
   };
 
   home.pointerCursor = {
@@ -39,6 +40,21 @@
     enable = true;
     createDirectories = true;
   };
+
+  gtk = {
+    enable = true;
+    colorScheme = "dark";
+    theme = {
+      name = "Adwaita-dark";
+      package = pkgs.gnome-themes-extra;
+    };
+    iconTheme = {
+      name = "Adwaita-dark";
+      package = pkgs.adwaita-icon-theme;
+    };
+  };
+
+  qt.enable = true;
 
   imports = [ ./sway.nix ./programs.nix ];
 }

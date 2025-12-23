@@ -13,11 +13,15 @@
         };
       };
       input = {
+        "type:pointer" = {
+          accel_profile = "flat";
+        };
         "type:touchpad" = {
           accel_profile = "flat";
           click_method = "clickfinger";
           natural_scroll = "enabled";
           scroll_factor = "0.8";
+          drag_lock = "disabled";
           tap = "enabled";
           dwt = "enabled";
         };
@@ -63,6 +67,11 @@
       bindsym --locked XF86MonBrightnessDown exec swayosd-client --brightness lower
 
       bindsym --release Caps_Lock exec swayosd-client --caps-lock
+
+      for_window [app_id="float-tui"] \
+        floating enable; \
+        move absolute position center; \
+        resize set 70 ppt 80 ppt
     '';
   };
 
@@ -70,12 +79,12 @@
     enable = true;
     systemdTarget = "sway-session.target";
     timeouts = [
+      { timeout = 120; command = "${pkgs.swaylock-effects}/bin/swaylock"; }
       {
-        timeout = 60;
+        timeout = 180;
         command = "${pkgs.sway}/bin/swaymsg 'output * dpms off'";
         resumeCommand = "${pkgs.sway}/bin/swaymsg 'output * dpms on'";
       }
-      { timeout = 180; command = "${pkgs.swaylock-effects}/bin/swaylock"; }
       { timeout = 1800; command = "${pkgs.systemd}/bin/systemctl suspend"; }
     ];
     events = [
@@ -145,16 +154,6 @@
     };
   };
 
-  programs.waybar = {
-    enable = true;
-    settings = [
-      (builtins.fromJSON (builtins.readFile ./waybar-config))
-    ]; 
-    style = builtins.readFile ./waybar-style;
-    systemd.enable = true;
-    systemd.target = "sway-session.target";
-  };
-
   programs.tofi = {
     enable = true;
     settings = {
@@ -178,4 +177,6 @@
   };
 
   home.pointerCursor.sway.enable = true;
+
+  imports = [ ./waybar.nix ];
 }
