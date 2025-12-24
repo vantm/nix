@@ -57,13 +57,12 @@
   xdg.portal = {
     enable = true;
     config.common.default = [ "*" ];
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-gnome
-      xdg-desktop-portal-gtk
-    ];
+    extraPortals = [ pkgs.xdg-desktop-portal ];
   };
 
   services.gnome-keyring.enable = true;
+
+  wayland.systemd.target = "sway-session.target";
 
   imports = [ ./sway.nix ./programs.nix ];
 }

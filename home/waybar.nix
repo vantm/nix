@@ -125,6 +125,5 @@
     ]; 
     style = builtins.readFile ./waybar-style;
     systemd.enable = true;
-    systemd.target = "sway-session.target";
   };
 }

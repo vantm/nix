@@ -169,8 +169,6 @@
 
   programs.onlyoffice.enable = true;
 
-  services.flameshot.enable = true;
-
   services.ollama.enable = true;
 
   services.wpaperd = {

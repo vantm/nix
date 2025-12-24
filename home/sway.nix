@@ -48,9 +48,9 @@
       bindsym Mod4+Shift+u resize shrink height 5 ppt; resize shrink width 5 ppt
       bindsym Mod4+Shift+i resize grow height 5 ppt; resize grow width 5 ppt
 
-      bindsym Mod1+Mod4+Control+p exec systemctl poweroff
-      bindsym Mod1+Mod4+Control+r exec systemctl reboot
-      bindsym Mod1+Mod4+Control+l exec ${pkgs.swaylock-effects}/bin/swaylock
+      bindsym Mod4+Mod1+Control+p exec systemctl poweroff
+      bindsym Mod4+Mod1+Control+r exec systemctl reboot
+      bindsym Mod4+Mod1+Control+l exec ${pkgs.swaylock-effects}/bin/swaylock
 
       bindgesture swipe:left workspace next
       bindgesture swipe:right workspace prev
@@ -69,11 +69,22 @@
 
       bindsym --release Caps_Lock exec swayosd-client --caps-lock
 
-      bindsym Print exec ${pkgs.flameshot}/bin/flameshot gui
 
-      bindsym Mod1+Print exec ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" -t ppm - | \
+      bindsym Print exec \
+        ${pkgs.grim}/bin/grim "$XDG_PICTURES_DIR/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')" && \
+        ${pkgs.libnotify}/bin/notify-send "Screenshot" "The screenshot had been saved to: $XDG_PICTURES_DIR"
+
+      bindsym Shift+Print exec \
+        ${pkgs.slurp}/bin/slurp | ${pkgs.grim}/bin/grim -g - "$XDG_PICTURES_DIR/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')" && \
+        ${pkgs.libnotify}/bin/notify-send "Screenshot" "The screenshot had been saved to: $XDG_PICTURES_DIR"
+
+      bindsym Mod4+Mod1+c exec \
+        ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp -p)" -t ppm - | \
         ${pkgs.imagemagick}/bin/magick - -format '%[pixel:p{0,0}]' txt:- | \
-        tail -n 1 | cut -d ' ' -f 4 | ${pkgs.wl-clipboard}/bin/wl-copy
+        tail -n 1 | cut -d' ' -f4 | \
+        ${pkgs.wl-clipboard}/bin/wl-copy && \
+        ${pkgs.libnotify}/bin/notify-send "Color Picker" "The color had been copied to the clipboard!"
+
 
       for_window [app_id="^float-tui"] floating enable; move absolute position center
       for_window [app_id="float-tui.process"] resize set 70 ppt 80 ppt
@@ -84,7 +95,6 @@
 
   services.swayidle = {
     enable = true;
-    systemdTarget = "sway-session.target";
     timeouts = [
       { timeout = 120; command = "${pkgs.swaylock-effects}/bin/swaylock"; }
       {
@@ -102,7 +112,6 @@
   services.cliphist = {
     enable = true;
     clipboardPackage = pkgs.wl-clipboard;
-    systemdTargets = [ "sway-session.target" ];
   };
 
   services.swayosd.enable = true;
@@ -110,7 +119,6 @@
 
   services.wlsunset = {
     enable = true;
-    systemdTarget = "sway-session.target";
     sunset = "18:00-20:00";
     sunrise = "6:30-7:30";
   };
