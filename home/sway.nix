@@ -117,6 +117,7 @@
     enable = true;
     sunset = "18:00-20:00";
     sunrise = "6:30-7:30";
+    temperature.night = 3000;
   };
 
   programs.swaylock = {
@@ -134,7 +135,7 @@
       bs-hl-color = "7daea3cc";
       caps-lock-bs-hl-color = "7daea3cc";
       caps-lock-key-hl-color = "d3869bcc";
-      font = "JetBrains Mono";
+      font = "0xProto Nerd Font";
       font-size = 35;
       indicator-idle-visible = true;
       indicator-radius = 100;
@@ -174,7 +175,7 @@
       horizontal = "true";
       font-size = 10;
       prompt-text = "run: ";
-      font = "monospace";
+      font = "0xProto Nerd Font";
       outline-width = 0;
       border-width = 0;
       background-color = "#000000";
