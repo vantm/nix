@@ -31,7 +31,6 @@ vim.keymap.set({ 'n', 'v' }, 'J', 'mzJ`z')
 
 vim.keymap.set('n', '<leader>ls', ':set syntax=')
 
-
 require('lazy').setup {
   'NMAC427/guess-indent.nvim', 
    {
@@ -55,7 +54,10 @@ require('lazy').setup {
       require('mini.ai').setup { n_lines = 500 }
 
       require('mini.surround').setup {
-        mappings = { find = 'gs', add = 'ys', delete = 'ds', replace = 'cs' }
+        mappings = {
+          find = 'gs', add = 'ys', delete = 'ds', replace = 'cs',
+          find = '', find_left = '', highlight = ''
+        }
       }
 
       local statusline = require 'mini.statusline'
@@ -70,12 +72,22 @@ require('lazy').setup {
       vim.keymap.set('n', '<leader>fh', ':Pick help<CR>')
       vim.keymap.set('n', '<leader>fg', ':Pick grep<CR>')
       vim.keymap.set('n', '<leader><leader>', ':Pick buffers<CR>')
-
-      require('mini.jump2d').setup {
-        allowed_windows = { not_current = false },
-        mappings = { start_jumping = 's' }
-      }
     end
+  },
+  {
+    'folke/flash.nvim',
+    event = 'VeryLazy',
+    opts = {
+      label = { style = 'inline' },
+      highlight = { backdrop = false },
+      modes = {
+        char = { highlight = { backdrop = false }, },
+      },
+    },
+    keys = {
+      { 's', mode = { 'n', 'x', 'o' }, function() require('flash').jump() end },
+      { 'B', mode = { 'n', 'x', 'o' }, function() require('flash').treesitter() end },
+    },
   },
   {
     'stevearc/oil.nvim',
@@ -84,6 +96,15 @@ require('lazy').setup {
       vim.keymap.set('n', '<leader>e', ':Oil<CR>')
       vim.keymap.set('n', '<leader>fe', ':Oil --float<CR>')
     end
+  },
+  {
+    'mistweaverco/kulala.nvim',
+    ft = { 'http', 'rest' },
+    opts = {
+      global_keymaps = true,
+      lsp = { keymaps = true, },
+      ui = { max_response_size = 1048576, },
+    },
   },
   {
     'neovim/nvim-lspconfig',

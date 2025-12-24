@@ -9,7 +9,7 @@ button {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
-#waybar>box { padding: 8px; }
+#waybar>box { padding: 4px; }
 
 #mode {
   font-weight: bold;
@@ -42,4 +42,18 @@ button {
 
 .modules-right .module {
   margin-left: 12px;
+}
+
+#mode {
+  padding-left: 8px;
+  padding-right: 8px;
+  border-radius: 4px;
+}
+
+#custom-dmenu {
+  min-width: 30px;
+  min-height: 30px;
+  font-size: 24px;
+  margin-right: 8px;
+  color: #76B3DD;
 }

@@ -14,6 +14,6 @@
       set si ai 
       set sw=2 et
     '';
-    extraLuaConfig = builtins.readFile ./neovim-lazy;
+    extraLuaConfig = builtins.readFile ./neovim.lua;
   };
 }

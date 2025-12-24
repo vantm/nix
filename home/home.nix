@@ -16,6 +16,8 @@
     GTK_IM_MODULE = "fcitx";
     QT_IM_MODULE = "fcitx";
     QT_QPA_PLATFORMTHEME = "qt6ct";
+    ELECTRON_OZONE_PLATFORM_HINT = "wayland";
+    NIXOS_OZONE_WL = "1";
   };
 
   home.pointerCursor = {
