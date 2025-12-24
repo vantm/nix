@@ -35,8 +35,8 @@
     };
     extraConfig = ''
       unbindsym Mod4+d
-      set $drun ${pkgs.tofi}/bin/tofi-run --fuzzy-match true | xargs swaymsg exec --
-      bindsym Mod4+d exec $drun
+      bindsym Mod4+d exec pgrep tofi-run && pkill tofi-run \
+        || ${pkgs.tofi}/bin/tofi-run --fuzzy-match true | xargs swaymsg exec --
 
       bindsym Mod4+c move absolute position center
 
@@ -70,13 +70,9 @@
       bindsym --release Caps_Lock exec swayosd-client --caps-lock
 
 
-      bindsym Print exec \
-        ${pkgs.grim}/bin/grim "$XDG_PICTURES_DIR/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')" && \
-        ${pkgs.libnotify}/bin/notify-send "Screenshot" "The screenshot had been saved to: $XDG_PICTURES_DIR"
+      bindsym Print exec ${pkgs.grim}/bin/grim - | ${pkgs.satty}/bin/satty -f -
 
-      bindsym Shift+Print exec \
-        ${pkgs.slurp}/bin/slurp | ${pkgs.grim}/bin/grim -g - "$XDG_PICTURES_DIR/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')" && \
-        ${pkgs.libnotify}/bin/notify-send "Screenshot" "The screenshot had been saved to: $XDG_PICTURES_DIR"
+      bindsym Shift+Print exec ${pkgs.slurp}/bin/slurp | ${pkgs.grim}/bin/grim -g - - | ${pkgs.satty}/bin/satty -f -
 
       bindsym Mod4+Mod1+c exec \
         ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp -p)" -t ppm - | \
