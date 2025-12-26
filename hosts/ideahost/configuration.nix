@@ -55,6 +55,8 @@
     settings.xinitrc = null;
   };
 
+  security.rtkit.enable = true;
+
   # Networking
 
   networking.hostName = "ideahost";
@@ -93,6 +95,8 @@
 
   programs.zsh.enable = true;
   programs.sway.enable = true;
+
+  programs.nix-ld.enable = true;
 
   virtualisation.docker.rootless = {
     enable = true;

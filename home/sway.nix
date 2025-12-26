@@ -6,10 +6,7 @@
     systemd.enable = true;
     config = {
       output = {
-        eDP-1 = {
-          mode = "2880x1800@90Hz";
-          scale = "1.3333334";
-        };
+        eDP-1 = { mode = "2880x1800@90Hz"; scale = "1.3333334"; };
       };
       input = {
         "type:pointer" = {
@@ -25,13 +22,13 @@
           dwt = "enabled";
         };
       };
-      fonts = {
-        names = [ "0xProto Nerd Font" ];
-        size = 10.0;
-      };
+      fonts = { names = [ "0xProto Nerd Font" ]; size = 10.0; };
       modifier = "Mod4";
       terminal = "alacritty";
       bars = [];
+      startup = [
+        { command = "exec --no-startup-id sleep 1 && ${pkgs.sway}/bin/swaymsg \"workspace 1\""; }
+      ];
     };
     extraConfig = ''
       unbindsym Mod4+d
@@ -47,6 +44,9 @@
 
       bindsym Mod4+Shift+u resize shrink height 5 ppt; resize shrink width 5 ppt
       bindsym Mod4+Shift+i resize grow height 5 ppt; resize grow width 5 ppt
+
+      bindsym Mod4+comma exec makoctl dismiss
+      bindsym Mod4+Shift+comma exec makoctl restore
 
       bindsym Mod4+Mod1+Control+p exec systemctl poweroff
       bindsym Mod4+Mod1+Control+r exec systemctl reboot

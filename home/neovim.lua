@@ -9,7 +9,7 @@ vim.keymap.set('n', '<C-k>', '<C-w>k')
 vim.keymap.set('n', '<C-l>', '<C-w>l')
 
 vim.keymap.set('n', '<leader>w', ':w<CR>')
-vim.keymap.set('n', '<leader>x', ':bd<CR>')
+vim.keymap.set('n', '<leader>x', '<C-w>q')
 
 vim.keymap.set({ 'n', 'v' }, '<leader>p', '"+p')
 vim.keymap.set({ 'n', 'v' }, '<leader>P', '"+P')
@@ -30,6 +30,22 @@ vim.keymap.set('n', '<C-u>', '<C-u>zz')
 vim.keymap.set({ 'n', 'v' }, 'J', 'mzJ`z')
 
 vim.keymap.set('n', '<leader>ls', ':set syntax=')
+
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = vim.api.nvim_create_augroup('nvim-lsp-format', { clear = true }),
+  callback = function()
+    local map = function(keys, func, mode)
+      vim.keymap.set(mode or 'n', keys, func)
+    end
+    map('gd', vim.lsp.buf.definition)
+    map('gr', vim.lsp.buf.references)
+    map('gI', vim.lsp.buf.implementation)
+    map('gD', vim.lsp.buf.type_definition)
+    map('<leader>lr', vim.lsp.buf.rename)
+    map('<leader>lf', vim.lsp.buf.format)
+    map('<leader>la', vim.lsp.buf.code_action)
+  end
+});
 
 require('lazy').setup {
   'NMAC427/guess-indent.nvim', 
@@ -107,52 +123,15 @@ require('lazy').setup {
     },
   },
   {
-    'neovim/nvim-lspconfig',
+    "mason-org/mason-lspconfig.nvim",
+    opts = {},
     dependencies = {
-      { 'mason-org/mason.nvim', version = '~1.0.0', opts = {} },
-      { 'mason-org/mason-lspconfig.nvim', version = '~1.0.0' },
-      'WhoIsSethDaniel/mason-tool-installer.nvim',
-      { 'j-hui/fidget.nvim', opts = {} },
-      'saghen/blink.cmp',
+      { "mason-org/mason.nvim", opts = {} },
+      "neovim/nvim-lspconfig",
     },
-    config = function()
-      local capabilities = require('blink.cmp').get_lsp_capabilities()
-
-      local servers = {
-        lua_ls = {}
-      }
-
-      local ensure_installed = vim.tbl_keys(servers or {})
-      vim.list_extend(ensure_installed, { 'stylua' });
-      require('mason-tool-installer').setup { ensure_installed = ensure_installed }
-
-      require('mason-lspconfig').setup {
-        ensure_installed = {},
-        handlers = {
-          function(server_name)
-            local server = servers[server_name] or {}
-            server.capabilities = vim.tbl_deep_extend('forcce', {}, capabilities, server.capabilities or {})
-            require('lspconfig')[server_name].setup(server)
-          end
-        }
-      }
-
-      vim.api.nvim_create_autocmd('LspAttach', {
-        group = vim.api.nvim_create_augroup('nix-nvim-lsp-attach', { clear = true }),
-        callback = function(event)
-          local map = function(keys, func, mode)
-            vim.keymap.set(mode or 'n', keys, func)
-          end
-          map('gd', vim.lsp.buf.definition)
-          map('gr', vim.lsp.buf.references)
-          map('gI', vim.lsp.buf.implementation)
-          map('gD', vim.lsp.buf.type_definition)
-          map('<leader>lr', vim.lsp.buf.rename)
-          map('<leader>la', vim.lsp.buf.code_action)
-        end
-      });
-    end
   },
+  'j-hui/fidget.nvim',
+  'saghen/blink.cmp',
   {
     'nvim-treesitter/nvim-treesitter',
     branch = 'master',
@@ -165,5 +144,5 @@ require('lazy').setup {
       highlight = { enable = true, },
       indent = { enable = true }
     }
-  }
+  },
 }

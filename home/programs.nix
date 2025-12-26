@@ -34,6 +34,7 @@
     brave
     dbeaver-bin
     localsend
+    spotify
   ];
 
   programs.firefox.enable = true;
@@ -164,7 +165,7 @@
   programs.satty.enable = true;
 
   programs.vscode.enable = true;
-
+  
   programs.obs-studio.enable = true;
 
   programs.onlyoffice.enable = true;

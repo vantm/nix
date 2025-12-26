@@ -1,7 +1,5 @@
 { pkgs, ... }:
 {
-  home.packages = with pkgs; [ gcc ];
-
   programs.neovim = {
     enable = true;
     plugins = with pkgs.vimPlugins; [ lazy-nvim ];
