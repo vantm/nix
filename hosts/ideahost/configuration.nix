@@ -44,16 +44,26 @@
     ];
   };
 
+  services.greetd = {
+    enable = true;
+    settings = {
+      terminal.vt = 1;
+      initial_session = {
+        user = "vantm";
+        command = "sway";
+      };
+      default_session = {
+        user = "vantm";
+        command = "${pkgs.greetd}/bin/agreety --cmd sway";
+      };
+    };
+  };
+
   environment.systemPackages = with pkgs; [
     curl wget git less vim ntfs3g nerd-fonts._0xproto
   ];
 
   fonts.packages = [ pkgs.nerd-fonts._0xproto ];
-
-  services.displayManager.ly = {
-    enable = true;
-    settings.xinitrc = null;
-  };
 
   security.rtkit.enable = true;
 
