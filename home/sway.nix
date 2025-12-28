@@ -27,7 +27,7 @@
       terminal = "alacritty";
       bars = [];
       startup = [
-        { command = "exec --no-startup-id sleep 1 && ${pkgs.sway}/bin/swaymsg \"workspace 1\""; }
+        { command = "sleep 1 && ${pkgs.sway}/bin/swaymsg \"workspace 1\""; }
       ];
     };
     extraConfig = ''

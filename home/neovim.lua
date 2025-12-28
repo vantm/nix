@@ -48,8 +48,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
 });
 
 require('lazy').setup {
-  'NMAC427/guess-indent.nvim', 
-   {
+  'NMAC427/guess-indent.nvim',
+  {
     'ellisonleao/gruvbox.nvim',
     priority = 1000,
     config = function()
@@ -108,7 +108,7 @@ require('lazy').setup {
   {
     'stevearc/oil.nvim',
     config = function()
-      require('oil').setup() 
+      require('oil').setup()
       vim.keymap.set('n', '<leader>e', ':Oil<CR>')
       vim.keymap.set('n', '<leader>fe', ':Oil --float<CR>')
     end
@@ -131,7 +131,19 @@ require('lazy').setup {
     },
   },
   'j-hui/fidget.nvim',
-  'saghen/blink.cmp',
+  {
+    'saghen/blink.cmp',
+    version = '1.*',
+    opts = {
+      keymap = { preset = 'default' },
+      appearance = { nerd_font_variant = 'normal' },
+      completion = { documentation = { auto_show = false } },
+      sources = {
+        default = { 'lsp', 'path', 'snippets', 'buffer' },
+      },
+      fuzzy = { implementation = "lua" }
+    },
+  },
   {
     'nvim-treesitter/nvim-treesitter',
     branch = 'master',
