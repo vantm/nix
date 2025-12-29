@@ -21,7 +21,7 @@
   };
 
   home.pointerCursor = {
-    name = "Bibata-Original-Classic";
+    name = "Bibata-Modern-Ice";
     size = 24;
     package = pkgs.bibata-cursors;
   };
@@ -35,6 +35,13 @@
     type = "fcitx5";
     fcitx5.addons = [ pkgs.fcitx5-bamboo ];
   };
+
+  systemd.user.services.fcitx5-daemon.Service.Environment = [
+    "XMODIFIERS=@im=fcitx"
+    "GTK_IM_MODULE=fcitx"
+    "QT_IM_MODULE=fcitx"
+    "QT_QPA_PLATFORMTHEME=qt6ct"
+  ];
 
   xdg.userDirs = {
     enable = true;
