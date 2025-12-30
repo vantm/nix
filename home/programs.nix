@@ -30,11 +30,12 @@
     xdg-utils
     slurp
     grim
-    kdePackages.dolphin
+    xfce.thunar
     brave
     dbeaver-bin
     localsend
     spotify
+    jetbrains.rider
   ];
 
   programs.firefox.enable = true;
@@ -112,6 +113,8 @@
     };
   };
 
+  programs.lazysql.enable = true;
+
   programs.btop = {
     enable = true;
     settings = {
@@ -169,6 +172,8 @@
   programs.obs-studio.enable = true;
 
   programs.onlyoffice.enable = true;
+
+  home.file.".ideavimrc".text = builtins.readFile ./.ideavimrc;
 
   services.ollama.enable = true;
 

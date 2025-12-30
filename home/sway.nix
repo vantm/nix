@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, config, ... }:
 {
   wayland.windowManager.sway = {
     enable = true;
@@ -29,29 +29,37 @@
       startup = [
         { command = "sleep 0.5 && ${pkgs.sway}/bin/swaymsg \"workspace 1\""; }
       ];
+      menu = "pgrep tofi-run && pkill tofi-run || ${pkgs.tofi}/bin/tofi-run --fuzzy-match true | xargs swaymsg exec --";
+      keybindings = let
+        modifier = config.wayland.windowManager.sway.config.modifier;
+      in lib.mkOptionDefault {
+        "${modifier}+c" = "move absolute position center";
+
+        "${modifier}+u" = "resize shrink width 5 ppt";
+        "${modifier}+i" = "resize grow width 5 ppt";
+        "${modifier}+o" = "resize shrink height 5 ppt";
+        "${modifier}+p" = "resize grow height 5 ppt";
+
+        "${modifier}+Shift+u" = "resize shrink height 5 ppt; resize shrink width 5 ppt";
+        "${modifier}+Shift+i" = "resize grow height 5 ppt; resize grow width 5 ppt";
+
+        "${modifier}+comma" = "exec makoctl dismiss";
+        "${modifier}+Shift+comma" = "exec makoctl restore";
+
+        "${modifier}+Mod1+Control+p" = "exec systemctl poweroff";
+        "${modifier}+Mod1+Control+r" = "exec systemctl reboot";
+        "${modifier}+Mod1+Control+l" = "exec ${pkgs.swaylock-effects}/bin/swaylock";
+
+        "Print" = "exec ${pkgs.grim}/bin/grim - | ${pkgs.satty}/bin/satty -f -";
+
+        "${modifier}+Print" = "exec ${pkgs.slurp}/bin/slurp | ${pkgs.grim}/bin/grim -g - - | ${pkgs.satty}/bin/satty -f -";
+
+        "Mod4+Mod1+c" = "exec ${pkgs.slurp}/bin/slurp -p | ${pkgs.grim}/bin/grim -g - -t ppm - | "
+            + "${pkgs.imagemagick}/bin/magick - -format '%[pixel:p{0,0}]' txt:- | "
+            + "tail -n 1 | cut -d' ' -f4 | ${pkgs.wl-clipboard}/bin/wl-copy";
+      };
     };
     extraConfig = ''
-      unbindsym Mod4+d
-      bindsym Mod4+d exec pgrep tofi-run && pkill tofi-run || \
-        ${pkgs.tofi}/bin/tofi-run --fuzzy-match true | xargs swaymsg exec --
-
-      bindsym Mod4+c move absolute position center
-
-      bindsym Mod4+u resize shrink width 5 ppt
-      bindsym Mod4+i resize grow width 5 ppt
-      bindsym Mod4+o resize shrink height 5 ppt
-      bindsym Mod4+p resize grow height 5 ppt
-
-      bindsym Mod4+Shift+u resize shrink height 5 ppt; resize shrink width 5 ppt
-      bindsym Mod4+Shift+i resize grow height 5 ppt; resize grow width 5 ppt
-
-      bindsym Mod4+comma exec makoctl dismiss
-      bindsym Mod4+Shift+comma exec makoctl restore
-
-      bindsym Mod4+Mod1+Control+p exec systemctl poweroff
-      bindsym Mod4+Mod1+Control+r exec systemctl reboot
-      bindsym Mod4+Mod1+Control+l exec ${pkgs.swaylock-effects}/bin/swaylock
-
       bindgesture swipe:left workspace next
       bindgesture swipe:right workspace prev
 
@@ -69,23 +77,10 @@
 
       bindsym --release Caps_Lock exec swayosd-client --caps-lock
 
-
-      bindsym Print exec ${pkgs.grim}/bin/grim - | ${pkgs.satty}/bin/satty -f -
-
-      bindsym Shift+Print exec ${pkgs.slurp}/bin/slurp | ${pkgs.grim}/bin/grim -g - - | ${pkgs.satty}/bin/satty -f -
-
-      bindsym Mod4+Mod1+c exec \
-        ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp -p)" -t ppm - | \
-        ${pkgs.imagemagick}/bin/magick - -format '%[pixel:p{0,0}]' txt:- | \
-        tail -n 1 | cut -d' ' -f4 | \
-        ${pkgs.wl-clipboard}/bin/wl-copy && \
-        ${pkgs.libnotify}/bin/notify-send "Color Picker" "The color had been copied to the clipboard!"
-
-
       for_window [app_id="^float-tui"] floating enable; move absolute position center
       for_window [app_id="float-tui.process"] resize set 70 ppt 80 ppt
       for_window [app_id="float-tui.audio"] resize set 600 px 400 px
-      for_window [app_id="float-tui.connection"] resize set 600 px 800 px
+      for_window [app_id="float-tui.connection"] resize set 800 px 800 px
     '';
   };
 

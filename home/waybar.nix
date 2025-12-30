@@ -57,7 +57,6 @@
         memory = {
           interval = 10;
           format = " {used:0.1f}GB";
-          tooltip = false;
           warning = 70;
           critical = 90;
         };
@@ -66,9 +65,10 @@
           "format-wifi" = " {essid}";
           "format-ethernet" = " ";
           "format-linked" = "{ipaddr}";
-          "format-disconnected" = " Disconnected";
+          "format-disconnected" = "󰪎";
           "format-disabled" = "";
-          "max-length" = 14;
+          "tooltip-format" = "{ipaddr}/{cidr}";
+          "max-length" = 12;
           "on-click" = "${pkgs.alacritty}/bin/alacritty --class 'float-tui.connection' --command ${pkgs.impala}/bin/impala";
         };
         wireplumber = {
@@ -124,9 +124,6 @@
 
         "custom/dmenu" = {
           format = "󱄅";
-          "on-click" = 
-            "pgrep tofi-run && pkill tofi-run || " +
-            "${pkgs.tofi}/bin/tofi-run --fuzzy-match true | xargs swaymsg exec --";
         };
       }
     ]; 
