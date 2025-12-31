@@ -108,9 +108,9 @@
       }
       { timeout = 1800; command = "${pkgs.systemd}/bin/systemctl suspend"; }
     ];
-    events = [
-      { event = "before-sleep"; command = "${pkgs.swaylock-effects}/bin/swaylock -f"; }
-    ];
+    events = {
+      "before-sleep" = "${pkgs.swaylock-effects}/bin/swaylock -f";
+    };
   };
 
   services.cliphist = {

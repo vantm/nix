@@ -5,6 +5,10 @@
     EDITOR = "nvim";
   };
 
+  programs.git.settings = {
+    core.editor = "nvim";
+  };
+
   programs.neovim = {
     enable = true;
     plugins = with pkgs.vimPlugins; [

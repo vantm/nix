@@ -34,18 +34,6 @@
 
   programs.firefox.enable = true;
 
-  programs.git = {
-    enable = true;
-    settings = {
-      user.name = "Van Tran";
-      user.email = "tmvan.1903@gmail.com";
-      init.defaultBranch = "master";
-      core.editor = "nvim";
-      pull.ff = "only";
-      merge.conflictStyle = "zdiff3";
-    };
-  };
-
   programs.lazysql.enable = true;
 
   programs.btop = {

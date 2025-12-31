@@ -22,6 +22,7 @@
     ./modules/xdg
 
     ./modules/zsh
+    ./modules/git
 
     ./modules/sway
     ./modules/sway/waybar
