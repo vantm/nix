@@ -3,7 +3,7 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hosts/${hostname}/hardware-configuration.nix
+      ./hardware-configuration.nix
     ];
 
   system.stateVersion = outputs.stateVersion;

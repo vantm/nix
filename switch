@@ -1,0 +1,17 @@
+#!/bin/sh
+
+TARGETHOST=$1
+
+if [ -z "$TARGETHOST" ] ; then
+  echo "Usage: ./switch hostname"
+  exit 1
+fi
+
+echo "Switching '$TARGETHOST'...";
+
+sudo nixos-rebuild \
+  --flake .#$TARGETHOST \
+  --target-host $TARGETHOST \
+  --build-host $TARGETHOST \
+  --fast \
+  dry-build
