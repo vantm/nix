@@ -8,6 +8,13 @@
       output = {
         eDP-1 = { mode = "2880x1800@90Hz"; scale = "1.3333334"; };
       };
+      colors.focused = {
+        background = "#458588";
+        border = "#458588";
+        childBorder = "#458588";
+        indicator = "#d65d0e";
+        text = "#ebdbb2";
+      };
       input = {
         "type:pointer" = {
           accel_profile = "flat";
@@ -30,16 +37,19 @@
       menu = "pgrep tofi-run && pkill tofi-run || ${pkgs.tofi}/bin/tofi-run --fuzzy-match true | xargs swaymsg exec --";
       keybindings = let
         modifier = config.wayland.windowManager.sway.config.modifier;
+        floatTerm = "alacritty --class 'float-tui.term'";
       in lib.mkOptionDefault {
+        "${modifier}+Shift+Return" = "exec ${floatTerm}";
+
         "${modifier}+c" = "move absolute position center";
 
-        "${modifier}+u" = "resize shrink width 5 ppt";
-        "${modifier}+i" = "resize grow width 5 ppt";
-        "${modifier}+o" = "resize shrink height 5 ppt";
-        "${modifier}+p" = "resize grow height 5 ppt";
+        "${modifier}+u" = "resize shrink width 20 px";
+        "${modifier}+i" = "resize grow width 20 px";
+        "${modifier}+o" = "resize shrink height 20 px";
+        "${modifier}+p" = "resize grow height 20 px";
 
-        "${modifier}+Shift+u" = "resize shrink height 5 ppt; resize shrink width 5 ppt";
-        "${modifier}+Shift+i" = "resize grow height 5 ppt; resize grow width 5 ppt";
+        "${modifier}+Shift+u" = "resize shrink height 20 px; resize shrink width 20 px";
+        "${modifier}+Shift+i" = "resize grow height 20 px; resize grow width 20 px";
 
         "${modifier}+comma" = "exec makoctl dismiss";
         "${modifier}+Shift+comma" = "exec makoctl restore";
@@ -76,6 +86,7 @@
       bindsym --release Caps_Lock exec swayosd-client --caps-lock
 
       for_window [app_id="^float-tui"] floating enable; move absolute position center
+      for_window [app_id="float-tui.term"] resize set 80 ppt 80 ppt
       for_window [app_id="float-tui.process"] resize set 70 ppt 80 ppt
       for_window [app_id="float-tui.audio"] resize set 600 px 400 px
       for_window [app_id="float-tui.connection"] resize set 800 px 800 px

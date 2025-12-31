@@ -30,7 +30,7 @@ button {
 #workspaces button.focused {
   color: #fff;
   font-weight: bold;
-  background-color: #285577;
+  background-color: #458588;
 }
 
 .modules-center #idle_inhibitor {
@@ -48,12 +48,4 @@ button {
   padding-left: 8px;
   padding-right: 8px;
   border-radius: 4px;
-}
-
-#custom-dmenu {
-  min-width: 30px;
-  min-height: 30px;
-  font-size: 24px;
-  margin-right: 8px;
-  color: #76B3DD;
 }

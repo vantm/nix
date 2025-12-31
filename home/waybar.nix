@@ -9,7 +9,7 @@
         height = 30;
         "margin-bottom" = 0;
         "margin-top" = 0;
-        "modules-left" = [ "custom/dmenu" "sway/mode" "sway/workspaces" ];
+        "modules-left" = [ "sway/mode" "sway/workspaces" ];
         "modules-center" = [ "clock" "idle_inhibitor" "privacy" ];
         "modules-right" = [
           "sway/scratchpad" 
@@ -120,10 +120,6 @@
             { type = "audio-out";   tooltip = true; "tooltip-icon-size" = 24; }
             { type = "audio-in";    tooltip = true; "tooltip-icon-size" = 24; }
           ];
-        };
-
-        "custom/dmenu" = {
-          format = "󱄅";
         };
       }
     ]; 

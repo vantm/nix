@@ -1,5 +1,10 @@
 { config, pkgs, username, hostname, outputs, ... }:
 {
+  nix = {
+    package = pkgs.nix;
+    settings.experimental-features = [ "nix-command" "flakes" ];
+  };
+
   home.username = username;
   home.homeDirectory = "/home/${username}";
 
