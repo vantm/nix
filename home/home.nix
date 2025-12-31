@@ -5,11 +5,6 @@
 
   home.stateVersion = outputs.stateVersion;
 
-  nix = {
-    package = pkgs.nix;
-    settings.experimental-features = [ "nix-command" "flakes" ];
-  };
-
   home.sessionVariables = {
     EDITOR = "nvim";
     XMODIFIERS = "@im=fcitx";
@@ -39,7 +34,7 @@
   systemd.user.services.fcitx5-daemon.Service.Environment = [
     "XMODIFIERS=@im=fcitx"
     "GTK_IM_MODULE=fcitx"
-    "QT_IM_MODULE=fcitx"
+    "QT_IM_MODULES=fcitx"
     "QT_QPA_PLATFORMTHEME=qt6ct"
   ];
 

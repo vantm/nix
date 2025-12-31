@@ -54,7 +54,7 @@
       };
       default_session = {
         user = username;
-        command = "${pkgs.greetd}/bin/agreety --cmd sway";
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd sway";
       };
     };
   };
