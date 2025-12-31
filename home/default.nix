@@ -74,6 +74,10 @@
   imports = [
     ./modules/sway
     ./modules/sway/waybar
-    ./programs.nix
+
+    ./modules/neovim
+    ./modules/alacritty
+
+    ./modules/programs.nix
   ];
 }

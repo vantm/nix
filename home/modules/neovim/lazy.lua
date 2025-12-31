@@ -35,6 +35,10 @@ require("lazy").setup({
   {
     "stevearc/oil.nvim",
     lazy = false,
+    config = function()
+      require("oil").setup()
+      vim.keymap.set("n", "<leader>e", ":Oil<CR>")
+    end,
   },
   {
     "nmac427/guess-indent.nvim",

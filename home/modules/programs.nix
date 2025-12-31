@@ -157,9 +157,4 @@
       mode = "center";
     };
   };
-
-  imports = [
-    ./modules/neovim
-    ./modules/alacritty
-  ];
 }
