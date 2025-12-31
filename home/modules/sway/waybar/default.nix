@@ -123,7 +123,7 @@
         };
       }
     ]; 
-    style = builtins.readFile ./waybar-style;
+    style = builtins.readFile ./styles.css;
     systemd.enable = true;
   };
 }
