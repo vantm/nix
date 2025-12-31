@@ -1,9 +1,9 @@
-{ config, pkgs, ... }:
+{ config, pkgs, username, hostname, outputs, ... }:
 {
-  home.username = "vantm";
-  home.homeDirectory = "/home/vantm";
+  home.username = username;
+  home.homeDirectory = "/home/${username}";
 
-  home.stateVersion = "25.11";
+  home.stateVersion = outputs.stateVersion;
 
   nix = {
     package = pkgs.nix;

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, username, ... }:
 {
   home.packages = with pkgs; [
     ## zsh plugins
@@ -180,7 +180,7 @@
   services.wpaperd = {
     enable = true;
     settings.default = {
-      path = "/home/vantm/Wallpapers";
+      path = "/home/${username}/Wallpapers";
       duration = "1d";
       sorting = "random";
       mode = "center";
