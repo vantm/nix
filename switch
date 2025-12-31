@@ -1,6 +1,13 @@
 #!/bin/sh
 
 TARGETHOST=$1
+shift
+if [ "$TARGETHOST" == "--dry" ] ; then
+  DRY="$TARGETHOST"
+  TARGETHOST=$1
+else
+  DRY=$1
+fi
 
 if [ -z "$TARGETHOST" ] ; then
   echo "Usage: ./switch hostname"
@@ -9,9 +16,14 @@ fi
 
 echo "Switching '$TARGETHOST'...";
 
-sudo nixos-rebuild \
-  --flake .#$TARGETHOST \
-  --target-host $TARGETHOST \
-  --build-host $TARGETHOST \
-  --fast \
-  dry-build
+if [ "$DRY" == "--dry" ] ; then
+  sudo nixos-rebuild \
+    --flake .#$TARGETHOST \
+    --no-reexec \
+    dry-build
+else
+  sudo nixos-rebuild \
+    --flake .#$TARGETHOST \
+    --no-reexec \
+    switch
+fi
