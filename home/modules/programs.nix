@@ -32,10 +32,6 @@
     spotify
   ];
 
-  programs.firefox.enable = true;
-
-  programs.lazysql.enable = true;
-
   programs.btop = {
     enable = true;
     settings = {
@@ -45,11 +41,17 @@
     };
   };
 
+  programs.fastfetch.enable = true;
+
+  programs.k9s.enable = true;
+
+  programs.lazysql.enable = true;
+
   programs.mpv.enable = true;
 
   programs.imv.enable = true;
 
-  programs.fastfetch.enable = true;
+  programs.firefox.enable = true;
 
   programs.satty.enable = true;
 
@@ -60,14 +62,4 @@
   programs.onlyoffice.enable = true;
 
   services.ollama.enable = true;
-
-  services.wpaperd = {
-    enable = true;
-    settings.default = {
-      path = "/home/${username}/Wallpapers";
-      duration = "1d";
-      sorting = "random";
-      mode = "center";
-    };
-  };
 }

@@ -26,6 +26,7 @@
 
     ./modules/sway
     ./modules/sway/waybar
+    ./modules/wpaper
 
     ./modules/neovim
     ./modules/alacritty
