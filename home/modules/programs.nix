@@ -43,8 +43,6 @@
 
   programs.fastfetch.enable = true;
 
-  programs.k9s.enable = true;
-
   programs.lazysql.enable = true;
 
   programs.mpv.enable = true;

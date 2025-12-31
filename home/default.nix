@@ -31,6 +31,7 @@
     ./modules/neovim
     ./modules/alacritty
 
+    ./modules/k9s
     ./modules/rider
 
     ./modules/programs.nix

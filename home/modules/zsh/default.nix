@@ -14,7 +14,6 @@
 
     shellAliases = {
       ll = "ls -la";
-      k = "kubectl";
       ".." = "cd ..";
       "..." = "cd ../..";
     };
