@@ -1,7 +1,7 @@
 #!/bin/sh
 
 TARGETHOST=$1
-shift
+shift 2>/dev/null
 if [ "$TARGETHOST" == "--dry" ] ; then
   DRY="$TARGETHOST"
   TARGETHOST=$1
@@ -10,7 +10,7 @@ else
 fi
 
 if [ -z "$TARGETHOST" ] ; then
-  echo "Usage: ./switch hostname"
+  echo "Usage: ./switch [--dry] <hostname>"
   exit 1
 fi
 
