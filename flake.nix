@@ -10,29 +10,25 @@
   };
 
   outputs =
-    { self, nixpkgs, home-manager } @ inputs:
+    {
+      self,
+      nixpkgs,
+      home-manager,
+    }@inputs:
     let
       inherit (self) outputs;
-      system = "x64_86-linux";
-      pkgs = import nixpkgs {
-        inherit system;
-      };
-      mkHost = hostname: username: inputs: outputs:  {
-        nixosConfiguration.${hostname} = nixpkgs.lib.nixosSystem {
-          system = system;
-          modules = [ 
-            ./hosts/${hostname}/configuration.nix
-          ];
-          specialArgs = {
-            inherit system username hostname;
+      mkHost = hostname: username:
+        nixpkgs.lib.nixosSystem {
+          modules = [ ./hosts/${hostname}/configuration.nix ];
+          specialArgs = { 
+            inherit outputs hostname username;
           };
         };
-      };
     in
     {
-      inherit (mkHost "ideahost" "vantm" inputs outputs)
-        nixosConfiguration
-      ;
+      nixosConfigurations = {
+        ideahost = mkHost "ideahost" "vantm";
+      };
       stateVersion = "25.11";
     };
 }
