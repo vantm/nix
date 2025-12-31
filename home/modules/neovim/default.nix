@@ -6,7 +6,7 @@
       {
         plugin = lazy-nvim;
         config = builtins.readFile ./lazy.lua;
-	type = "lua";
+        type = "lua";
       }
     ];
     extraLuaConfig =

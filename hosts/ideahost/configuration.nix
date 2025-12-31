@@ -2,7 +2,8 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
 
@@ -23,7 +24,7 @@
       term_background_bright: 585b70
       term_foreground_bright: cdd6f4
     '';
-    style.wallpapers = [];
+    style.wallpapers = [ ];
   };
   boot.loader.timeout = 3;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -60,7 +61,13 @@
   };
 
   environment.systemPackages = with pkgs; [
-    curl wget git less vim ntfs3g nerd-fonts._0xproto
+    curl
+    wget
+    git
+    less
+    vim
+    ntfs3g
+    nerd-fonts._0xproto
   ];
 
   fonts.packages = [ pkgs.nerd-fonts._0xproto ];

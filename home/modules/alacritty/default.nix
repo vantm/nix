@@ -17,12 +17,12 @@
       };
 
       keyboard.bindings = [
-      	{ key = "Insert"; mods = "Shift"; action = "Paste"; }
-      	{ key = "Insert"; mods = "Control"; action = "Copy"; }
-      	{ mode = "Vi"; key = "O"; mods = "Shift"; action = "Open"; }
-      	{ mode = "Vi"; key = "Q"; action = "ToggleViMode"; }
-      	{ mode = "Vi"; key = "U"; action = "ScrollHalfPageUp"; }
-      	{ mode = "Vi"; key = "D"; action = "ScrollHalfPageDown"; }
+        { key = "Insert"; mods = "Shift"; action = "Paste"; }
+        { key = "Insert"; mods = "Control"; action = "Copy"; }
+        { mode = "Vi"; key = "O"; mods = "Shift"; action = "Open"; }
+        { mode = "Vi"; key = "Q"; action = "ToggleViMode"; }
+        { mode = "Vi"; key = "U"; action = "ScrollHalfPageUp"; }
+        { mode = "Vi"; key = "D"; action = "ScrollHalfPageDown"; }
       ];
 
       cursor.vi_mode_style.shape = "Block";

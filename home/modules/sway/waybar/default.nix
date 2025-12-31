@@ -12,7 +12,7 @@
         "modules-left" = [ "sway/mode" "sway/workspaces" ];
         "modules-center" = [ "clock" "idle_inhibitor" "privacy" ];
         "modules-right" = [
-          "sway/scratchpad" 
+          "sway/scratchpad"
           "cpu"
           "memory"
           "network"
@@ -35,11 +35,11 @@
             "weeks-pos" = "left";
             "on-scroll" = 1;
             format = {
-              months   = "<span color='#e05634'>{}</span>";
-              days     = "<span>{}</span>";
-              weeks    = "<span color='#62c1cc'>W{}</span>";
+              months = "<span color='#e05634'>{}</span>";
+              days = "<span>{}</span>";
+              weeks = "<span color='#62c1cc'>W{}</span>";
               weekdays = "<span color='#62c1cc'>{}</span>";
-              today    = "<span color='#e05634'><b><u>{}</u></b></span>";
+              today = "<span color='#e05634'><b><u>{}</u></b></span>";
             };
           };
           actions = {
@@ -117,12 +117,12 @@
           "transition-duration" = 250;
           modules = [
             { type = "screenshare"; tooltip = true; "tooltip-icon-size" = 24; }
-            { type = "audio-out";   tooltip = true; "tooltip-icon-size" = 24; }
-            { type = "audio-in";    tooltip = true; "tooltip-icon-size" = 24; }
+            { type = "audio-out"; tooltip = true; "tooltip-icon-size" = 24; }
+            { type = "audio-in"; tooltip = true; "tooltip-icon-size" = 24; }
           ];
         };
       }
-    ]; 
+    ];
     style = builtins.readFile ./styles.css;
     systemd.enable = true;
   };

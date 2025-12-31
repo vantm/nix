@@ -30,42 +30,44 @@
       fonts = { names = [ "0xProto Nerd Font" ]; size = 10.0; };
       modifier = "Mod4";
       terminal = "alacritty";
-      bars = [];
+      bars = [ ];
       startup = [
         { command = "sleep 0.5 && ${pkgs.sway}/bin/swaymsg \"workspace 1\""; }
       ];
       menu = "pgrep tofi-run && pkill tofi-run || ${pkgs.tofi}/bin/tofi-run --fuzzy-match true | xargs swaymsg exec --";
-      keybindings = let
-        modifier = config.wayland.windowManager.sway.config.modifier;
-        floatTerm = "alacritty --class 'float-tui.term'";
-      in lib.mkOptionDefault {
-        "${modifier}+Shift+Return" = "exec ${floatTerm}";
+      keybindings =
+        let
+          modifier = config.wayland.windowManager.sway.config.modifier;
+          floatTerm = "alacritty --class 'float-tui.term'";
+        in
+        lib.mkOptionDefault {
+          "${modifier}+Shift+Return" = "exec ${floatTerm}";
 
-        "${modifier}+c" = "move absolute position center";
+          "${modifier}+c" = "move absolute position center";
 
-        "${modifier}+u" = "resize shrink width 20 px";
-        "${modifier}+i" = "resize grow width 20 px";
-        "${modifier}+o" = "resize shrink height 20 px";
-        "${modifier}+p" = "resize grow height 20 px";
+          "${modifier}+u" = "resize shrink width 20 px";
+          "${modifier}+i" = "resize grow width 20 px";
+          "${modifier}+o" = "resize shrink height 20 px";
+          "${modifier}+p" = "resize grow height 20 px";
 
-        "${modifier}+Shift+u" = "resize shrink height 20 px; resize shrink width 20 px";
-        "${modifier}+Shift+i" = "resize grow height 20 px; resize grow width 20 px";
+          "${modifier}+Shift+u" = "resize shrink height 20 px; resize shrink width 20 px";
+          "${modifier}+Shift+i" = "resize grow height 20 px; resize grow width 20 px";
 
-        "${modifier}+comma" = "exec makoctl dismiss";
-        "${modifier}+Shift+comma" = "exec makoctl restore";
+          "${modifier}+comma" = "exec makoctl dismiss";
+          "${modifier}+Shift+comma" = "exec makoctl restore";
 
-        "${modifier}+Mod1+Control+p" = "exec systemctl poweroff";
-        "${modifier}+Mod1+Control+r" = "exec systemctl reboot";
-        "${modifier}+Mod1+Control+l" = "exec ${pkgs.swaylock-effects}/bin/swaylock";
+          "${modifier}+Mod1+Control+p" = "exec systemctl poweroff";
+          "${modifier}+Mod1+Control+r" = "exec systemctl reboot";
+          "${modifier}+Mod1+Control+l" = "exec ${pkgs.swaylock-effects}/bin/swaylock";
 
-        "Print" = "exec ${pkgs.grim}/bin/grim - | ${pkgs.satty}/bin/satty -f -";
+          "Print" = "exec ${pkgs.grim}/bin/grim - | ${pkgs.satty}/bin/satty -f -";
 
-        "${modifier}+Print" = "exec ${pkgs.slurp}/bin/slurp | ${pkgs.grim}/bin/grim -g - - | ${pkgs.satty}/bin/satty -f -";
+          "${modifier}+Print" = "exec ${pkgs.slurp}/bin/slurp | ${pkgs.grim}/bin/grim -g - - | ${pkgs.satty}/bin/satty -f -";
 
-        "Mod4+Mod1+c" = "exec ${pkgs.slurp}/bin/slurp -p | ${pkgs.grim}/bin/grim -g - -t ppm - | "
+          "Mod4+Mod1+c" = "exec ${pkgs.slurp}/bin/slurp -p | ${pkgs.grim}/bin/grim -g - -t ppm - | "
             + "${pkgs.imagemagick}/bin/magick - -format '%[pixel:p{0,0}]' txt:- | "
             + "tail -n 1 | cut -d' ' -f4 | ${pkgs.wl-clipboard}/bin/wl-copy";
-      };
+        };
     };
     extraConfig = ''
       bindgesture swipe:left workspace next
@@ -178,11 +180,11 @@
       horizontal = "true";
       width = "100%";
       height = 40;
-  
+
       # Font
       font = "0xProto Nerd Font";
       font-size = 12;
-  
+
       # Window
       outline-width = 0;
       border-width = 0;
@@ -193,27 +195,27 @@
       padding-left = 20;
       padding-right = 0;
       clip-to-padding = "false";
-  
+
       # Prompt
       prompt-text = "run: ";
       prompt-padding = 30;
       prompt-background = "#1a1a1a";
       prompt-background-padding = "4, 10";
       prompt-background-corner-radius = 4;
-  
+
       # Colors (dark theme)
       background-color = "#000000";
       text-color = "#cdd6f4";
-  
+
       input-color = "#f38ba8";
       input-background = "#181825";
       input-background-padding = "4, 10";
       input-background-corner-radius = 4;
-  
+
       alternate-result-background = "#11111b";
       alternate-result-background-padding = "4, 10";
       alternate-result-background-corner-radius = 4;
-  
+
       selection-color = "#ffffff";
       selection-match-color = "#ffffff";
       selection-background = "#313244";
