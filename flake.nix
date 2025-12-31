@@ -44,19 +44,26 @@
         };
     in
     {
+      stateVersion = "25.11";
+
+      # To apply nixos configuration, run:
+      # > ./scripts/switch <hostname>
       nixosConfigurations = {
         ideahost = mkHost "ideahost" "vantm";
       };
+
+      # To apply home-manager configuration, run:
+      # > ./scripts/home-switch
       homeConfigurations = {
         ideahost = mkHome "ideahost" "vantm";
       };
-
-      stateVersion = "25.11";
 
       devShells.${system}.default = pkgs.mkShell {
         packages = [ home-manager.packages.${system}.home-manager ];
       };
 
+      # To format all nix files, run
+      # > fd -g '**/*.nix' | xargs nix run .#fmt --
       apps.${system}.fmt = {
         type = "app";
         program = "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt";
