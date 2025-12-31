@@ -28,7 +28,7 @@
 
       unsetopt BEEP
 
-      ZVM_INIT_MODE=precmd
+      ZVM_INIT_MODE=sourcing
     '';
 
     plugins = [
