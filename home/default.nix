@@ -24,7 +24,12 @@
   xdg.portal = {
     enable = true;
     config.common.default = [ "*" ];
-    extraPortals = [ pkgs.xdg-desktop-portal ];
+    extraPortals = with pkgs; [
+      xdg-desktop-portal
+      xdg-desktop-portal-gtk
+      xdg-desktop-portal-gnome
+      xdg-desktop-portal-wlr
+    ];
   };
 
   services.gnome-keyring.enable = true;
