@@ -78,6 +78,8 @@
     ./modules/neovim
     ./modules/alacritty
 
+    ./modules/rider
+
     ./modules/programs.nix
   ];
 }
