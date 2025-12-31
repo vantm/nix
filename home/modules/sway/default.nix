@@ -223,6 +223,4 @@
   };
 
   home.pointerCursor.sway.enable = true;
-
-  imports = [ ./waybar.nix ];
 }

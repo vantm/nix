@@ -26,8 +26,6 @@
     package = pkgs.bibata-cursors;
   };
 
-  programs.home-manager.enable = true;
-
   fonts.fontconfig.enable = true;
 
   i18n.inputMethod = {
@@ -73,5 +71,9 @@
 
   wayland.systemd.target = "sway-session.target";
 
-  imports = [ ./sway.nix ./programs.nix ];
+  imports = [
+    ./modules/sway
+    ./modules/sway/waybar
+    ./programs.nix
+  ];
 }

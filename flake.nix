@@ -37,7 +37,7 @@
                 "rider"
               ];
           };
-          modules = [ ./home/home.nix ];
+          modules = [ ./home ];
           extraSpecialArgs = {
             inherit outputs hostname username;
           };

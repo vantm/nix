@@ -1,12 +1,12 @@
 #!/bin/sh
 
-TARGETHOST=$1
+TARGETHOST="$1"
 shift 2>/dev/null
 if [ "$TARGETHOST" == "--dry" ] ; then
   DRY="$TARGETHOST"
-  TARGETHOST=$1
+  TARGETHOST="$1"
 else
-  DRY=$1
+  DRY="$1"
 fi
 
 if [ -z "$TARGETHOST" ] ; then
@@ -14,16 +14,20 @@ if [ -z "$TARGETHOST" ] ; then
   exit 1
 fi
 
-echo "Switching '$TARGETHOST'...";
+echo "Switching '$TARGETHOST'..."
+
+ROOT="$(git rev-parse --show-toplevel)"
+
+echo "Git dir $ROOT"
 
 if [ "$DRY" == "--dry" ] ; then
   sudo nixos-rebuild \
-    --flake .#$TARGETHOST \
+    --flake "$ROOT#$TARGETHOST" \
     --no-reexec \
     dry-build
 else
   sudo nixos-rebuild \
-    --flake .#$TARGETHOST \
+    --flake "$ROOT#$TARGETHOST" \
     --no-reexec \
     switch
 fi
