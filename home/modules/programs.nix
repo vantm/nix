@@ -35,7 +35,6 @@
     dbeaver-bin
     localsend
     spotify
-    jetbrains.rider
   ];
 
   programs.firefox.enable = true;
@@ -143,8 +142,6 @@
   programs.obs-studio.enable = true;
 
   programs.onlyoffice.enable = true;
-
-  home.file.".ideavimrc".text = builtins.readFile ./.ideavimrc;
 
   services.ollama.enable = true;
 
