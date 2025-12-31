@@ -1,5 +1,10 @@
 { pkgs, lib, ... }:
 {
+  home.sessionVariables = {
+    VISUAL = "nvim";
+    EDITOR = "nvim";
+  };
+
   programs.neovim = {
     enable = true;
     plugins = with pkgs.vimPlugins; [
