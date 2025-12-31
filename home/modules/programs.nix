@@ -1,10 +1,6 @@
 { pkgs, username, ... }:
 {
   home.packages = with pkgs; [
-    ## zsh plugins
-    zsh-vi-mode
-    pure-prompt
-
     ## tools
     netcat-openbsd
     tree
@@ -21,7 +17,6 @@
 
     ## app
     adwaita-icon-theme
-    bibata-cursors
     gnome-themes-extra
     wl-clipboard
     wf-recorder
@@ -51,67 +46,6 @@
     };
   };
 
-  programs.zsh = {
-    enable = true;
-
-    enableCompletion = true;
-    autosuggestion.enable = true;
-    syntaxHighlighting.enable = true;
-
-    shellAliases = {
-      ll = "ls -la";
-      k = "kubectl";
-      ".." = "cd ..";
-      "..." = "cd ../..";
-    };
-
-    history.size = 10000;
-
-    initContent = ''
-      fpath+=($HOME/.config/pure)
-      autoload -Uz prompinit; promptinit
-      prompt pure
-
-      unsetopt BEEP
-    '';
-
-    plugins = [
-      {
-        name = "vi-mode";
-        src = pkgs.zsh-vi-mode;
-        file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
-      }
-    ];
-  };
-
-  programs.zoxide = {
-    enable = true;
-    enableZshIntegration = true;
-    options = [ "--cmd cd" ];
-  };
-
-  programs.fzf = {
-    enable = true;
-    enableZshIntegration = true;
-  };
-
-  programs.direnv = {
-    enable = true;
-    enableZshIntegration = true;
-  };
-
-  programs.lazygit = {
-    enable = true;
-    enableZshIntegration = true;
-    settings = {
-      notARepository = "skip";
-      git = {
-        branchLogCmd = "git log --graph --decorate --oneline {{branchName}} --";
-        allBranchesLogCmds = [ "git log --graph --decorate --oneline" ];
-      };
-    };
-  };
-
   programs.lazysql.enable = true;
 
   programs.btop = {
@@ -128,12 +62,6 @@
   programs.imv.enable = true;
 
   programs.fastfetch.enable = true;
-
-  programs.fd.enable = true;
-
-  programs.ripgrep.enable = true;
-
-  programs.jq.enable = true;
 
   programs.satty.enable = true;
 
