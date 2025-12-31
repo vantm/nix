@@ -16,10 +16,8 @@
           accel_profile = "flat";
           click_method = "clickfinger";
           natural_scroll = "enabled";
-          scroll_factor = "0.8";
           drag_lock = "disabled";
           tap = "enabled";
-          dwt = "enabled";
         };
       };
       fonts = { names = [ "0xProto Nerd Font" ]; size = 10.0; };

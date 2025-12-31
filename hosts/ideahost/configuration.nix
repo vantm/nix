@@ -1,12 +1,12 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, username, hostname, outputs }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+      /etc/nixos/hardware-configuration.nix
     ];
 
-  system.stateVersion = "25.11";
+  system.stateVersion = outputs.stateVersion;
 
   hardware.bluetooth = {
     enable = true;
@@ -35,7 +35,7 @@
 
   i18n.defaultLocale = "en_US.UTF-8";
 
-  users.users.vantm = {
+  users.users.${username} = {
     isNormalUser = true;
     shell = pkgs.zsh;
     extraGroups = [
@@ -49,11 +49,11 @@
     settings = {
       terminal.vt = 1;
       initial_session = {
-        user = "vantm";
+        user = username;
         command = "sway";
       };
       default_session = {
-        user = "vantm";
+        user = username;
         command = "${pkgs.greetd}/bin/agreety --cmd sway";
       };
     };
@@ -69,7 +69,7 @@
 
   # Networking
 
-  networking.hostName = "ideahost";
+  networking.hostName = hostname;
 
   networking.dhcpcd.wait = "background";
   networking.dhcpcd.extraConfig = "noarp";
