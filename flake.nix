@@ -83,9 +83,46 @@
         ideahost = mkHome "ideahost" "vantm";
       };
 
-      devShells.${system}.default = pkgs.mkShell {
-        packages = [ home-manager.packages.${system}.home-manager ];
+      devShells.${system} = {
+        default = pkgs.mkShell {
+          packages = [ home-manager.packages.${system}.home-manager ];
+        };
+
+        dotnet_10 =
+          let
+            dotnetPkg = (
+              with pkgs.dotnetCorePackages;
+              combinePackages [
+                sdk_10_0
+              ]
+            );
+          in
+          pkgs.mkShell {
+            packages = with pkgs ; [
+              dotnetPkg
+              jre17_minimal
+              nodejs_20
+            ];
+
+            shellHook = ''
+              export JAVA_HOME="${pkgs.jre17_minimal}"
+              export DOTNET_ROOT="${dotnetPkg}/share/dotnet";
+            '';
+
+          };
+
+        nodejs_20 = pkgs.mkShell {
+          packages = with pkgs ; [
+            nodejs_20
+            nest-cli
+            jre17_minimal
+          ];
+          shellHook = ''
+            export JAVA_HOME="${pkgs.jre17_minimal}"
+          '';
+        };
       };
+
 
       # To format all nix files, run
       # > fd -g '**/*.nix' | xargs nix run .#fmt --
