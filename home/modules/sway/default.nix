@@ -68,7 +68,8 @@
 
           "Mod4+Mod1+c" = "exec ${pkgs.slurp}/bin/slurp -p | ${pkgs.grim}/bin/grim -g - -t ppm - | "
             + "${pkgs.imagemagick}/bin/magick - -format '%[pixel:p{0,0}]' txt:- | "
-            + "tail -n 1 | cut -d' ' -f4 | ${pkgs.wl-clipboard}/bin/wl-copy";
+            + "tail -n 1 | cut -d' ' -f4 | tr '[:upper:]' '[:lower:]' | "
+            + "${pkgs.wl-clipboard}/bin/wl-copy -n";
         };
     };
     extraConfig = ''

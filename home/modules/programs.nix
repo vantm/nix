@@ -12,12 +12,7 @@
     bluetui
     wiremix
 
-    ## qt
-    kdePackages.qt6ct
-
     ## app
-    adwaita-icon-theme
-    gnome-themes-extra
     wl-clipboard
     wf-recorder
     libnotify

@@ -1,4 +1,0 @@
-#!/bin/sh
-
-ROOT="$(git rev-parse --show-toplevel)"
-home-manager --flake "$ROOT#$HOSTNAME" switch -b backup

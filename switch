@@ -1,0 +1,79 @@
+#!/bin/sh
+
+dry=false
+home_manager=false
+repl=false
+hostname="$HOSTNAME"
+
+while [[ -n "$1" ]]; do
+  case "$1" in
+    "--dry" | "-d")
+      dry=true
+      ;;
+    "--home" | "-h")
+      home_manager=true
+      ;;
+    "--repl" | "-r")
+      repl=true
+      ;;
+    "--help")
+      echo "Usage: ./switch [options] [hostname]"
+      echo
+      echo "Options:"
+      echo "    --dry  | -d    Dry run"
+      echo "    --home | -h    Run home manager"
+      echo "    --repl | -r    Run repl"
+      echo "    --help         Show help"
+      exit 0;
+      ;;
+    *)
+      if [ -n "$1" ]; then
+        hostname="$1"
+      fi
+      ;;
+  esac
+
+  shift
+done
+
+flake_root="$(git rev-parse --show-toplevel)"
+
+function handle_home_manager {
+  if $repl; then
+    echo "[home-manager] Openning REPL ...";
+    home-manager --flake "$flake_root#$hostname" repl
+    exit 0;
+  fi
+
+  if $dry; then
+    echo "[home-manager] Dry-building is not supported!";
+    exit 1;
+  fi
+
+  echo "[home-manager] Switching ...";
+  home-manager --flake "$flake_root#$hostname" switch
+}
+
+function handle_nixos_rebuild {
+  if $repl; then
+    echo "[nixos-rebuild] Openning REPL ...";
+    sudo nixos-rebuild --flake "$flake_root#$hostname" repl
+    exit 0;
+  fi
+
+  if $dry; then
+    echo "[nixos-rebuild] Dry-building ...";
+    sudo nixos-rebuild --flake "$flake_root#$hostname" dry-build
+    exit 0;
+  fi
+
+  echo "[nixos-rebuild] Switching ...";
+  sudo nixos-rebuild --flake "$flake_root#$hostname" switch
+}
+
+
+if $home_manager; then
+  handle_home_manager
+else
+  handle_nixos_rebuild
+fi
