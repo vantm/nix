@@ -13,7 +13,6 @@
     wiremix
 
     ## app
-    wl-clipboard
     wf-recorder
     libnotify
     ffmpeg

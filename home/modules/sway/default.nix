@@ -98,134 +98,14 @@
     '';
   };
 
-  services.swayidle = {
-    enable = true;
-    timeouts = [
-      { timeout = 120; command = "${pkgs.swaylock-effects}/bin/swaylock"; }
-      {
-        timeout = 180;
-        command = "${pkgs.sway}/bin/swaymsg 'output * dpms off'";
-        resumeCommand = "${pkgs.sway}/bin/swaymsg 'output * dpms on'";
-      }
-      { timeout = 1800; command = "${pkgs.systemd}/bin/systemctl suspend"; }
-    ];
-    events = {
-      "before-sleep" = "${pkgs.swaylock-effects}/bin/swaylock -f";
-    };
-  };
-
-  services.cliphist = {
-    enable = true;
-    clipboardPackage = pkgs.wl-clipboard;
-  };
-
   services.swayosd.enable = true;
   services.mako.enable = true;
 
-  services.wlsunset = {
-    enable = true;
-    sunset = "18:00-20:00";
-    sunrise = "6:30-7:30";
-    temperature.night = 3000;
-  };
-
-  programs.swaylock = {
-    enable = true;
-    package = pkgs.swaylock-effects;
-    settings = {
-      ignore-empty-password = true;
-      daemonize = true;
-      indicator = true;
-      clock = true;
-      datestr = "%d/%m/%Y";
-      screenshots = true;
-      show-keyboard-layout = true;
-      indicator-caps-lock = true;
-      bs-hl-color = "7daea3cc";
-      caps-lock-bs-hl-color = "7daea3cc";
-      caps-lock-key-hl-color = "d3869bcc";
-      font = "0xProto Nerd Font";
-      font-size = 35;
-      indicator-idle-visible = true;
-      indicator-radius = 100;
-      indicator-thickness = 7;
-      inside-color = "32302f66";
-      inside-clear-color = "89b48266";
-      inside-caps-lock-color = "e78a4e66";
-      inside-ver-color = "7daea366";
-      inside-wrong-color = "ea696266";
-      key-hl-color = "a9b665cc";
-      layout-bg-color = "32302f00";
-      layout-text-color = "d4be98";
-      line-color = "00000000";
-      ring-color = "e78a4ecc";
-      ring-clear-color = "89b482cc";
-      ring-caps-lock-color = "e78a4ecc";
-      ring-ver-color = "7daea3cc";
-      ring-wrong-color = "ea6962cc";
-      separator-color = "00000000";
-      text-color = "d4be98";
-      text-clear-color = "d4be98";
-      text-caps-lock-color = "d4be98";
-      text-ver-color = "d4be98";
-      text-wrong-color = "d4be98";
-      effect-blur = "10x5";
-      effect-greyscale = true;
-      effect-vignette = "0.5:0.5";
-    };
-  };
-
-  programs.tofi = {
-    enable = true;
-    settings = {
-      # Layout
-      anchor = "bottom";
-      horizontal = "true";
-      width = "100%";
-      height = 40;
-
-      # Font
-      font = "0xProto Nerd Font";
-      font-size = 12;
-
-      # Window
-      outline-width = 0;
-      border-width = 0;
-      min-input-width = 120;
-      result-spacing = 30;
-      padding-top = 8;
-      padding-bottom = 0;
-      padding-left = 20;
-      padding-right = 0;
-      clip-to-padding = "false";
-
-      # Prompt
-      prompt-text = "run: ";
-      prompt-padding = 30;
-      prompt-background = "#1a1a1a";
-      prompt-background-padding = "4, 10";
-      prompt-background-corner-radius = 4;
-
-      # Colors (dark theme)
-      background-color = "#000000";
-      text-color = "#cdd6f4";
-
-      input-color = "#f38ba8";
-      input-background = "#181825";
-      input-background-padding = "4, 10";
-      input-background-corner-radius = 4;
-
-      alternate-result-background = "#11111b";
-      alternate-result-background-padding = "4, 10";
-      alternate-result-background-corner-radius = 4;
-
-      selection-color = "#ffffff";
-      selection-match-color = "#ffffff";
-      selection-background = "#313244";
-      selection-background-padding = "4, 10";
-      selection-background-corner-radius = 4;
-    };
-  };
-
   home.pointerCursor.sway.enable = true;
+
+  imports = [
+    ./swaylock.nix
+    ./swayidle.nix
+    ./wlsunset.nix
+  ];
 }
