@@ -2,9 +2,8 @@
 {
   qt = {
     enable = true;
-    style.name = "adwaita-dark";
     platformTheme = {
-      name = "qt5ct";
+      name = "qt6ct";
       package = pkgs.qt6Packages.qt6ct;
     };
   };
