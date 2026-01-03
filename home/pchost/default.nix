@@ -1,5 +1,13 @@
 { config, pkgs, username, hostname, outputs, ... }:
 {
+  home.sessionVariables = {
+    XDG_CURRENT_DESKTOP = "Hyprland";
+    XDG_SESSION_DESKTOP = "Hyprland";
+    LIBVA_DRIVER_NAME = "nvidia";
+    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    NVD_BACKEND = "direct";
+  };
+
   imports = [
     ../modules/cursor
     ../modules/inputMethod
@@ -11,8 +19,9 @@
     ../modules/git
 
     ../modules/wayland
-    ../modules/sway
-    ../modules/sway/waybar
+    #../modules/sway
+    ../modules/hypr
+    ../modules/waybar
 
     ../modules/wpaper
     ../modules/tofi

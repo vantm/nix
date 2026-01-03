@@ -95,9 +95,6 @@
     '';
   };
 
-  services.swayosd.enable = true;
-  services.mako.enable = true;
-
   home.pointerCursor.sway.enable = true;
 
   imports = [

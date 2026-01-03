@@ -53,5 +53,9 @@
 
   programs.onlyoffice.enable = true;
 
+  services.swayosd.enable = true;
+
+  services.mako.enable = true;
+
   services.ollama.enable = true;
 }

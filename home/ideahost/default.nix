@@ -12,7 +12,7 @@
 
     ../modules/wayland
     ../modules/sway
-    ../modules/sway/waybar
+    ../modules/waybar
 
     ../modules/wpaper
     ../modules/tofi
