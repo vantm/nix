@@ -11,9 +11,12 @@
         size = 12;
       };
 
+      colors.primary = {
+        background = "#181818";
+      };
+
       window = {
         padding = { x = 4; y = 4; };
-        # decorations = "None";
       };
 
       keyboard.bindings = [

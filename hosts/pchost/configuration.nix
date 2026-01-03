@@ -16,7 +16,11 @@
       ../modules/docker.nix
     ];
 
-  system.stateVersion = outputs.stateVersion;
+  boot.loader.limine.extraEntries = ''
+    /Windows
+      protocol: efi
+      path: uuid(f62cf2e4-7a97-4f75-9f7b-240d78adbaa3):/EFI/Microsoft/Boot/bootmgfw.efi
+  '';
 
   time.timeZone = "Asia/Ho_Chi_Minh";
   i18n.defaultLocale = "en_US.UTF-8";
@@ -29,6 +33,8 @@
     vim
     ntfs3g
   ];
+
+  security.rtkit.enable = true;
 
   programs.nix-ld.enable = true;
 }

@@ -41,7 +41,7 @@ flake_root="$(git rev-parse --show-toplevel)"
 function handle_home_manager {
   if $repl; then
     echo "[home-manager] Openning REPL ...";
-    home-manager --flake "$flake_root#$hostname" repl
+    home-manager --flake "$flake_root#$hostname" --show-trace repl
     exit 0;
   fi
 
@@ -57,7 +57,7 @@ function handle_home_manager {
 function handle_nixos_rebuild {
   if $repl; then
     echo "[nixos-rebuild] Openning REPL ...";
-    sudo nixos-rebuild --flake "$flake_root#$hostname" repl
+    sudo nixos-rebuild --flake "$flake_root#$hostname" --show-trace repl
     exit 0;
   fi
 
