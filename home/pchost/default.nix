@@ -24,5 +24,7 @@
     ../modules/rider
 
     ../modules/programs.nix
+
+    ./monitors.nix
   ];
 }
